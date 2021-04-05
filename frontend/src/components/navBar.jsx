@@ -31,8 +31,8 @@ const NavBar = () => {
               ></ListItemNavBar>
               <ListItemNavBar
                 iconClass="fa fa-sign-out"
-                label="Sign Out"
-                path="/"
+                label="Log Out"
+                path="/logout"
               ></ListItemNavBar>
             </React.Fragment>
           )}
