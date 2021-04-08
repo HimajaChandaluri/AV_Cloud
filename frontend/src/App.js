@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import NavBar from "./components/navBar";
 import UserRoute from "./components/common/userRoute";
+import AdminRoute from "./components/common/adminRoute";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 import "./App.css";
 import Login from "./components/login";

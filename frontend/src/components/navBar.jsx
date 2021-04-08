@@ -13,14 +13,49 @@ const NavBar = () => {
       <Link className="navbar-brand col-sm-3 col-md-2 mr-0" to="/">
         Company name
       </Link>
-      <div className="collapse navbar-collapse" id="navbarNav">
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav px-3">
+          {user && admin && (
+            <ListItemNavBar
+              iconClass="fa fa-user-circle-o"
+              label="Dashboard"
+              path="/dashboard"
+            ></ListItemNavBar>
+          )}
+          {user && !admin && (
+            <ListItemNavBar
+              iconClass="fa fa-user-circle-o"
+              label="My Plan"
+              path="/myplan"
+            ></ListItemNavBar>
+          )}
+        </ul>
         <ul className="navbar-nav px-3 ml-auto">
           {!user && (
-            <ListItemNavBar
-              iconClass="fa fa-sign-out"
-              label="Login"
-              path="/login"
-            ></ListItemNavBar>
+            <React.Fragment>
+              <ListItemNavBar
+                iconClass="fa fa-sign-out"
+                label="Login"
+                path="/login"
+              ></ListItemNavBar>
+              <ListItemNavBar
+                iconClass="fa fa-sign-out"
+                label="Register"
+                path="/register"
+              ></ListItemNavBar>
+            </React.Fragment>
           )}
           {user && (
             <React.Fragment>
