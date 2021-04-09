@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import auth from "../services/authService";
 import Joi from "joi-browser";
 import Form from "./common/form";
@@ -11,8 +11,8 @@ class LoginForm extends Form {
   };
 
   schema = {
-    username: Joi.string().required().min(5).max(15).email().label("Username"),
-    password: Joi.string().required().min(8).max(20).label("Password"),
+    username: Joi.string().required().label("Username"),
+    password: Joi.string().required().label("Password"),
   };
 
   doSubmit = async () => {
