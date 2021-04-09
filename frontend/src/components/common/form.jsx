@@ -51,7 +51,7 @@ class Form extends Component {
     return (
       <button
         disabled={this.validate()}
-        className="btn btn-primary"
+        className="btn  btn-info"
         onClick={onClick}
       >
         {label}

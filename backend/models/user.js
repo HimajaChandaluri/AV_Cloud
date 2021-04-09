@@ -3,7 +3,15 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const _ = require("lodash");
 
-const userArray = [];
+const userArray = [
+  {
+    _id: "1234",
+    name: "admin",
+    email: "admin@admin.com",
+    password: "$2b$10$2nqIaxdFY9s57nrrMjEM2.5gD.KQ3NF7/wU7taPNAC.lVf7bZbbYS",
+    isAdmin: true,
+  },
+];
 
 class User {
   static findById(_id) {

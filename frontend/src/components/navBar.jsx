@@ -9,8 +9,8 @@ const NavBar = () => {
 
   return (
     <nav
-      className="navbar navbar-dark fixed-top flex-md-nowrap p-10 shadow navbar-expand-md"
-      style={{ backgroundColor: "#6930c3" }}
+      className="navbar navbar-dark fixed-top flex-md-nowrap p-10 shadow navbar-expand-md bg-info"
+      // style={{ backgroundColor: "#6930c3" }}
     >
       <Link className="navbar-brand col-sm-3 col-md-2 mr-0" to="/">
         Company name
@@ -31,14 +31,14 @@ const NavBar = () => {
         <ul className="navbar-nav px-3">
           {user && user.isAdmin && (
             <ListItemNavBar
-              iconClass="fa fa-user-circle-o"
+              iconClass="fa fa-bar-chart"
               label="Dashboard"
               path="/dashboard"
             ></ListItemNavBar>
           )}
           {user && !user.isAdmin && (
             <ListItemNavBar
-              iconClass="fa fa-user-circle-o"
+              iconClass="fa fa-list-alt"
               label="My Plan"
               path="/myplan"
             ></ListItemNavBar>
@@ -63,7 +63,7 @@ const NavBar = () => {
             <React.Fragment>
               <ListItemNavBar
                 iconClass="fa fa-user-circle-o"
-                label="Profile"
+                label={user.name}
                 path="/"
               ></ListItemNavBar>
               <ListItemNavBar
