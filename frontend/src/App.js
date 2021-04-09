@@ -27,6 +27,7 @@ class App extends Component {
               path="/dashboard"
               component={AdminDashboard}
             ></AdminRoute>
+            <Redirect from="/" exact to="/login"></Redirect>
           </Switch>
         </main>
       </React.Fragment>

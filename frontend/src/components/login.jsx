@@ -11,8 +11,8 @@ class LoginForm extends Form {
   };
 
   schema = {
-    username: Joi.string().required().label("Username"),
-    password: Joi.string().required().label("Password"),
+    username: Joi.string().required().min(5).max(15).label("Username"),
+    password: Joi.string().required().min(8).max(20).label("Password"),
   };
 
   doSubmit = async () => {
@@ -31,17 +31,38 @@ class LoginForm extends Form {
   };
 
   render() {
-    if (auth.getCurrentUser()) return <Redirect to="/"></Redirect>;
-    return (
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.renderInput("username", "Username")}
-          {this.renderInput("password", "Password", "password")}
-          {this.renderButton("Login")}
-        </form>
-      </div>
-    );
+    const user = auth.getCurrentUser();
+
+    if (!user) {
+      return (
+        <div>
+          <h1>Login</h1>
+          <form onSubmit={this.handleSubmit}>
+            {this.renderInput("username", "Username")}
+            {this.renderInput("password", "Password", "password")}
+            {this.renderButton("Login")}
+          </form>
+        </div>
+      );
+    } else {
+      if (user && user.isAdmin) {
+        return (
+          <Redirect
+            to={{
+              pathname: "/dashboard",
+            }}
+          ></Redirect>
+        );
+      } else {
+        return (
+          <Redirect
+            to={{
+              pathname: "/myplan",
+            }}
+          ></Redirect>
+        );
+      }
+    }
   }
 }
 
