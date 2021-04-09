@@ -11,6 +11,8 @@ if (!config.get("jwtPrivateKey")) {
   process.exit(1);
 }
 
+const cors = require("cors");
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/user", user);
