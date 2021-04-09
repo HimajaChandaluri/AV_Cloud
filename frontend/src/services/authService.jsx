@@ -27,12 +27,23 @@ export function logout() {
 }
 
 export function getCurrentUser() {
-  try {
-    const jwt = localStorage.getItem(tokenKey);
-    return jwtDecode(jwt);
-  } catch (ex) {
-    return null;
-  }
+  //actual code
+  // try {
+  //   const jwt = localStorage.getItem(tokenKey);
+  //   return jwtDecode(jwt);
+  // } catch (ex) {
+  //   return null;
+  // }
+
+  // -----tested using below values------
+  return null;
+  // return {
+  //   _id: "1234",
+  //   name: "Himaja Chandaluri",
+  //   email: "himaja.chandaluri@gmail.com",
+  //   isAdmin: false,
+  //   iat: 1617904344,
+  // };
 }
 
 export function getJwt() {

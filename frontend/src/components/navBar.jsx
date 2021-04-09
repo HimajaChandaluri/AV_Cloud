@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { loggedIn, user, admin } from "../services/authService";
+import auth from "../services/authService";
 import ListItemNavBar from "./common/listItemNavBar";
 import "../styles/navbar.css";
 
 const NavBar = () => {
+  const user = auth.getCurrentUser();
+
   return (
     <nav
       className="navbar navbar-dark fixed-top flex-md-nowrap p-10 shadow navbar-expand-md"
@@ -27,14 +29,14 @@ const NavBar = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav px-3">
-          {user && admin && (
+          {user && user.isAdmin && (
             <ListItemNavBar
               iconClass="fa fa-user-circle-o"
               label="Dashboard"
               path="/dashboard"
             ></ListItemNavBar>
           )}
-          {user && !admin && (
+          {user && !user.isAdmin && (
             <ListItemNavBar
               iconClass="fa fa-user-circle-o"
               label="My Plan"
