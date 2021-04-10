@@ -37,7 +37,7 @@ class Register extends Form {
     if (!user) {
       return (
         <div>
-          <h1>Register</h1>
+          <h1 className="text-center">Register</h1>
           <form onSubmit={this.handleSubmit}>
             {this.renderInput("name", "Name")}
             {this.renderInput("username", "Username")}

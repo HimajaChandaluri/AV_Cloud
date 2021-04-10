@@ -36,7 +36,7 @@ class LoginForm extends Form {
     if (!user) {
       return (
         <div>
-          <h1>Login</h1>
+          <h1 className="text-center">Login</h1>
           <form onSubmit={this.handleSubmit}>
             {this.renderInput("username", "Username")}
             {this.renderInput("password", "Password", "password")}

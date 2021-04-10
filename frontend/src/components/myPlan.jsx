@@ -7,7 +7,9 @@ class MyPlan extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1 style={{ marginBottom: "25px" }}>MyPlan</h1>
+        <h1 className="text-center" style={{ marginBottom: "25px" }}>
+          MyPlan
+        </h1>
         <CurrentPlan style={{ marginTop: "30px" }}></CurrentPlan>
         <PastPlans style={{ marginTop: "35px" }}></PastPlans>
       </React.Fragment>
