@@ -5,33 +5,24 @@ const _ = require("lodash");
 
 const userArray = [
   {
-    _id: "1234",
     name: "admin",
     email: "admin@admin.com",
     password: "$2b$10$2nqIaxdFY9s57nrrMjEM2.5gD.KQ3NF7/wU7taPNAC.lVf7bZbbYS",
     isAdmin: true,
   },
+  {
+    name: "Himaja",
+    email: "himaja.chandaluri@gmail.com",
+    password: "$2b$10$NP3F7.ZCmXTMAD7fL99jPuQCUTBogS6U5vzLrKyn4yE8x/h/nJ4bS",
+    isAdmin: false,
+  },
 ];
 
 class User {
-  static findById(_id) {
+  static findByEmail(email) {
     return new Promise((resolve) => {
       setTimeout(() => {
-        console.log("In 'findById()', ID: ", _id);
-        const userIndex = _.findIndex(userArray, function (u) {
-          return u._id == _id;
-        });
-        console.log("userIndex: ", userIndex, " data: ", userArray[userIndex]);
-        if (userIndex >= 0) resolve(userArray[userIndex]);
-        resolve(false);
-      }, 300);
-    });
-  }
-
-  static findIfEmailExists(email) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log("In 'findIfEmailExists()', EMAIL: ", email);
+        console.log("In 'findByEmail()', EMAIL: ", email);
         const userIndex = _.findIndex(userArray, function (u) {
           return u.email == email;
         });
@@ -53,7 +44,6 @@ class User {
           password
         );
         const user = {
-          _id: "1234",
           name: name,
           email: email,
           password: password,
@@ -66,10 +56,9 @@ class User {
     });
   }
 
-  static generateAuthToken(_id, name, email, isAdmin) {
+  static generateAuthToken(name, email, isAdmin) {
     const token = jwt.sign(
       {
-        _id: _id,
         name: name,
         email: email,
         isAdmin: isAdmin,

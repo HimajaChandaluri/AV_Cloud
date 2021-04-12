@@ -34,6 +34,7 @@ class LoginForm extends Form {
     const user = auth.getCurrentUser();
 
     if (!user) {
+      console.log("DID NOT GET USER");
       return (
         <div>
           <h1 className="text-center">Login</h1>
@@ -45,6 +46,7 @@ class LoginForm extends Form {
         </div>
       );
     } else {
+      console.log("GOT USER");
       if (user && user.isAdmin) {
         return (
           <Redirect
