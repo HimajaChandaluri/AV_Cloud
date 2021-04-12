@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import withCardView from "./common/withCardView";
 
-class CurrentPlan extends Component {
+class FuturePlan extends Component {
   state = {};
   render() {
-    const { data: currentPlan } = this.props;
-    // console.log("CURRENT PLAN : ", currentPlan);
+    const { data: futurePlans } = this.props;
+
     return (
       <React.Fragment>
-        <h1> Current Plan</h1>
+        <h1> Future Plans</h1>
         <div
           className="dropdown-divider"
           style={{
@@ -16,12 +16,12 @@ class CurrentPlan extends Component {
             borderBlockColor: "#BEE5F0",
           }}
         ></div>
-        {currentPlan &&
-          currentPlan.length > 0 &&
-          currentPlan.map((plan) => (
-            <React.Fragment key={plan.startDate + plan.endDate}>
+        {futurePlans &&
+          futurePlans.length > 0 &&
+          futurePlans.map((plan) => (
+            <React.Fragment>
               <p>
-                <strong>Current Cycle: </strong> {plan.startDate} -{" "}
+                <strong>Future Cycle: </strong> {plan.startDate} -{" "}
                 {plan.endDate}
               </p>
               <p>
@@ -34,12 +34,12 @@ class CurrentPlan extends Component {
               </p>
             </React.Fragment>
           ))}
-        {currentPlan && currentPlan.length == 0 && (
-          <p> No active current plan at the moment</p>
+        {futurePlans && futurePlans.length == 0 && (
+          <p> No future plans at the moment</p>
         )}
       </React.Fragment>
     );
   }
 }
 
-export default withCardView(CurrentPlan);
+export default withCardView(FuturePlan);
