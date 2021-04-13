@@ -16,7 +16,6 @@ export function getSubscriptionData() {
 }
 
 export function addNewSubscription(subscriptionData) {
-  console.log(subscriptionData);
   return http.post(apiEndpoint + "/plan", {
     startDate: subscriptionData.startDate,
     endDate: subscriptionData.endDate,
@@ -24,4 +23,8 @@ export function addNewSubscription(subscriptionData) {
     paymentType: subscriptionData.paymentType,
     tag: subscriptionData.tag,
   });
+}
+
+export function getUserCount() {
+  return http.get(apiEndpoint + "/numberOfUsers");
 }

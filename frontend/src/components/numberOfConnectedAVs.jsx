@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import withCardView from "./common/withCardView";
+import { getAVCount } from "../services/avService";
 
 class NumberOfConnectedAVs extends Component {
   state = {};
+
+  async componentDidMount() {
+    const { data: avCount } = await getAVCount();
+    this.setState({ avCount: avCount.count });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -15,7 +22,7 @@ class NumberOfConnectedAVs extends Component {
           }}
         ></div>
         <p className="text-center" style={{ fontSize: "50px" }}>
-          13,250
+          {this.state.avCount}
         </p>
       </React.Fragment>
     );

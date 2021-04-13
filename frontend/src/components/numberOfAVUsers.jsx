@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import withCardView from "./common/withCardView";
+import { getUserCount } from "../services/userService";
 
 class NumberOfAVUsers extends Component {
   state = {};
+
+  async componentDidMount() {
+    const { data: userCount } = await getUserCount();
+    this.setState({ userCount: userCount.count });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -15,7 +22,7 @@ class NumberOfAVUsers extends Component {
           }}
         ></div>
         <p className="text-center" style={{ fontSize: "50px" }}>
-          13,000
+          {this.state.userCount}
         </p>
       </React.Fragment>
     );

@@ -5,7 +5,7 @@ class CustomPieChart extends Component {
   state = {};
 
   defaultLabelStyle = {
-    fontSize: "9px",
+    fontSize: "7px",
     fontFamily: "sans-serif",
     fill: "white",
   };
@@ -16,7 +16,7 @@ class CustomPieChart extends Component {
         data={this.props.data}
         radius={50}
         viewBoxSize={[100, 100]}
-        label={({ dataEntry }) => dataEntry.label}
+        label={({ dataEntry }) => dataEntry[this.props.label]}
         labelStyle={this.defaultLabelStyle}
       ></PieChart>
     );
