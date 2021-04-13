@@ -56,6 +56,14 @@ class User {
     });
   }
 
+  static getCount() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(300);
+      }, 300);
+    });
+  }
+
   static generateAuthToken(name, email, isAdmin) {
     const token = jwt.sign(
       {

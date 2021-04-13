@@ -1,4 +1,5 @@
 const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const express = require("express");
@@ -17,6 +18,11 @@ router.get("/plan", auth, async (req, res) => {
   const plan = await UserSubscription.getMySubscriptions(req.user.email);
   console.log("PLAN:", plan);
   res.send(plan);
+});
+
+router.get("/numberOfUsers", auth, admin, async (req, res) => {
+  const count = await User.getCount();
+  res.send({ count: count });
 });
 
 router.post("/plan", auth, async (req, res) => {
