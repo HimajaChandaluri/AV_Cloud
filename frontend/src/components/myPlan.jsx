@@ -3,6 +3,7 @@ import CurrentPlan from "./currentPlan";
 import PastPlans from "./pastPlans";
 import FuturePlan from "./futurePlan";
 import { getSubscriptionData } from "../services/userService";
+import { Link } from "react-router-dom";
 import Button from "./common/button";
 
 class MyPlan extends Component {
@@ -18,17 +19,24 @@ class MyPlan extends Component {
     });
   }
 
-  addPlanClicked = () => {
-    console.log("ADD PLAN WAS CLICKED");
-  };
-
   render() {
     return (
       <React.Fragment>
         <h1 className="text-center" style={{ marginBottom: "25px" }}>
           MyPlan
         </h1>
-        <Button label="Add Plan" onClick={this.addPlanClicked}></Button>
+        <Link
+          className="btn btn-info"
+          to={{
+            pathname: "/myPlan/addPlan",
+            state: {
+              futurePlans: this.state.futurePlans,
+              currentPlan: this.state.currentPlan,
+            },
+          }}
+        >
+          Add Plan
+        </Link>
         <FuturePlan
           style={{ marginTop: "30px" }}
           data={this.state.futurePlans}

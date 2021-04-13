@@ -34,7 +34,7 @@ class CurrentPlan extends Component {
               </p>
             </React.Fragment>
           ))}
-        {currentPlan && currentPlan.length == 0 && (
+        {currentPlan && currentPlan.length === 0 && (
           <p> No active current plan at the moment</p>
         )}
       </React.Fragment>

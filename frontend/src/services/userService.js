@@ -14,3 +14,14 @@ export function register(user) {
 export function getSubscriptionData() {
   return http.get(apiEndpoint + "/plan");
 }
+
+export function addNewSubscription(subscriptionData) {
+  console.log(subscriptionData);
+  return http.post(apiEndpoint + "/plan", {
+    startDate: subscriptionData.startDate,
+    endDate: subscriptionData.endDate,
+    amount: subscriptionData.amount,
+    paymentType: subscriptionData.paymentType,
+    tag: subscriptionData.tag,
+  });
+}

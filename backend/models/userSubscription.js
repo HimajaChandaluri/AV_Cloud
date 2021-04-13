@@ -91,6 +91,7 @@ class UserSubscription {
   }
 
   static validate(user) {
+    console.log("USER", user);
     const schema = Joi.object({
       email: Joi.string().required().email(),
       startDate: Joi.string().required(),

@@ -9,17 +9,18 @@ class FuturePlan extends Component {
     return (
       <React.Fragment>
         <h1> Future Plans</h1>
-        <div
-          className="dropdown-divider"
-          style={{
-            marginBottom: "30px",
-            borderBlockColor: "#BEE5F0",
-          }}
-        ></div>
         {futurePlans &&
           futurePlans.length > 0 &&
           futurePlans.map((plan) => (
             <React.Fragment>
+              <div
+                className="dropdown-divider"
+                style={{
+                  marginTop: "30px",
+                  marginBottom: "30px",
+                  borderBlockColor: "#BEE5F0",
+                }}
+              ></div>
               <p>
                 <strong>Future Cycle: </strong> {plan.startDate} -{" "}
                 {plan.endDate}
@@ -34,8 +35,17 @@ class FuturePlan extends Component {
               </p>
             </React.Fragment>
           ))}
-        {futurePlans && futurePlans.length == 0 && (
-          <p> No future plans at the moment</p>
+        {futurePlans && futurePlans.length === 0 && (
+          <React.Fragment>
+            <div
+              className="dropdown-divider"
+              style={{
+                marginBottom: "30px",
+                borderBlockColor: "#BEE5F0",
+              }}
+            ></div>
+            <p> No future plans at the moment</p>
+          </React.Fragment>
         )}
       </React.Fragment>
     );

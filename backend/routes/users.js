@@ -20,30 +20,29 @@ router.get("/plan", auth, async (req, res) => {
 });
 
 router.post("/plan", auth, async (req, res) => {
-  console.log("req.user: ", req.user, " req.user.email: ", req.user.email);
-  const result = UserSubscription.validate(
-    _.pick(req.body, [
-      "email",
+  const result = UserSubscription.validate({
+    email: req.user.email,
+    ..._.pick(req.body, [
       "startDate",
       "endDate",
       "amount",
       "paymentType",
       "tag",
-    ])
-  );
+    ]),
+  });
   if (result.error)
     return res.status(400).send(result.error.details[0].message);
 
-  const plan = await UserSubscription.addNewSubscription(
-    _.pick(req.body, [
-      "email",
+  const plan = await UserSubscription.addNewSubscription({
+    email: req.user.email,
+    ..._.pick(req.body, [
       "startDate",
       "endDate",
       "amount",
       "paymentType",
       "tag",
-    ])
-  );
+    ]),
+  });
   if (plan) res.status(200).send(plan);
 });
 

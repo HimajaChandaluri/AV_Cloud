@@ -74,6 +74,23 @@ class Form extends Component {
     );
   };
 
+  renderRadioOptions = (name, label, type) => {
+    return (
+      <div className="form-check">
+        <label className="form-check-label">
+          <input
+            className="form-check-input"
+            type={type}
+            value={label}
+            onChange={this.handleChange}
+            name={name}
+          ></input>
+          {label}
+        </label>
+      </div>
+    );
+  };
+
   // renderSelect = (name, label, options) => {
   //   const { data, errors } = this.state;
 
