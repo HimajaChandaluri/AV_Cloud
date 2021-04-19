@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NumberOfAVUsers from "./numberOfAVUsers";
 import NumberOfConnectedAVs from "./numberOfConnectedAVs";
+import ConnectedAVDetails from "./connectedAVDetails";
 import StatesOfConnectedAVs from "./statesOfConnectedAVs";
 
 class AdminDashboard extends Component {
@@ -33,7 +34,8 @@ class AdminDashboard extends Component {
             ></NumberOfConnectedAVs>
           </div>
         </div>
-        <div className="row" style={{ margin: "0px" }}>
+        <ConnectedAVDetails></ConnectedAVDetails>
+        {/* <div className="row" style={{ margin: "0px" }}>
           <div className="col-12">
             <StatesOfConnectedAVs
               style={{
@@ -43,7 +45,7 @@ class AdminDashboard extends Component {
               }}
             ></StatesOfConnectedAVs>
           </div>
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }

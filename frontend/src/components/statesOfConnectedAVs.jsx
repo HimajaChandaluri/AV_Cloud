@@ -19,21 +19,21 @@ class StatesOfConnectedAVs extends Component {
   //   },
   // ];
 
-  async componentDidMount() {
-    const { data: avStates } = await getAVStateAndCount();
-    console.log("AV STATES: ", avStates);
-    const data = [];
-    let count = 0;
-    avStates.map((item) => {
-      data.push({
-        state: item.state,
-        value: item.count,
-        color: this.color[count],
-      });
-      count += 1;
-    });
-    this.setState({ data });
-  }
+  // async componentDidMount() {
+  //   const { data: avStates } = await getAVStateAndCount();
+  //   console.log("AV STATES: ", avStates);
+  //   const data = [];
+  //   let count = 0;
+  //   avStates.map((item) => {
+  //     data.push({
+  //       state: item.state,
+  //       value: item.count,
+  //       color: this.color[count],
+  //     });
+  //     count += 1;
+  //   });
+  //   this.setState({ data });
+  // }
 
   render() {
     return (
@@ -47,7 +47,7 @@ class StatesOfConnectedAVs extends Component {
           }}
         ></div>
         <div style={{ height: "250px" }}>
-          <CustomPieChart data={this.state.data} label="state"></CustomPieChart>
+          <CustomPieChart data={this.props.data} label="state"></CustomPieChart>
         </div>
       </React.Fragment>
     );

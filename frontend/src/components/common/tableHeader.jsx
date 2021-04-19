@@ -3,13 +3,17 @@ import React, { Component } from "react";
 class TableHeader extends Component {
   render() {
     return (
-      <thead>
+      <thead style={{ backgroundColor: "#F2F8FA" }}>
         <tr>
           {this.props.columns.map((column) => (
             <th
               className="clickable"
               key={column.path}
-              style={{ fontSize: "20px" }}
+              style={{
+                fontSize: "22px",
+                paddingLeft: "25px",
+                fontFamily: "Courier",
+              }}
             >
               {column.label}
             </th>

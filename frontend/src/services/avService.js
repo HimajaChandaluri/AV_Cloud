@@ -10,3 +10,7 @@ export function getAVCount() {
 export function getAVStateAndCount() {
   return http.get(apiEndpoint + "/statesOfAVs");
 }
+
+export function getListOfAVs() {
+  return http.get(apiEndpoint + "/listOfAVs");
+}

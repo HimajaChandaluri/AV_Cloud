@@ -10,7 +10,16 @@ class TableBody extends Component {
           data.map((item) => (
             <tr key={item[keyAtt]}>
               {columns.map((column) => (
-                <td key={column.path}>{_.get(item, column.path)}</td>
+                <td
+                  key={column.path}
+                  style={{
+                    fontSize: "18px",
+                    paddingLeft: "25px",
+                    fontFamily: "Courier",
+                  }}
+                >
+                  {_.get(item, column.path)}
+                </td>
               ))}
             </tr>
           ))}

@@ -15,4 +15,9 @@ router.get("/statesOfAVs", auth, admin, async (req, res) => {
   res.send(avStates);
 });
 
+router.get("/listOfAVs", auth, admin, async (req, res) => {
+  const avData = await AV.getListOfConnectedAVs();
+  res.send(avData);
+});
+
 module.exports = router;
