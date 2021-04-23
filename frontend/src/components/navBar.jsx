@@ -37,11 +37,33 @@ const NavBar = () => {
             ></ListItemNavBar>
           )}
           {user && !user.isAdmin && (
+            <React.Fragment>
             <ListItemNavBar
               iconClass="fa fa-list-alt"
               label="My Plan"
               path="/myplan"
             ></ListItemNavBar>
+            <ListItemNavBar
+                iconClass="fa fa-list-alt"
+                label="Dashboard"
+                path="/mystatus"
+              ></ListItemNavBar>
+               <ListItemNavBar
+                iconClass="fa fa-list-alt"
+                label="Schedule a Ride"
+                path="/mySchedule"
+              ></ListItemNavBar>
+              <ListItemNavBar
+                iconClass="fa fa-list-alt"
+                label="My Vechiles"
+                path="/myVechiles"
+              ></ListItemNavBar>
+              <ListItemNavBar
+                iconClass="fa fa-list-alt"
+                label="Add a Vechile"
+                path="/myVechiles/addVechile"
+              ></ListItemNavBar>
+              </React.Fragment>
           )}
         </ul>
         <ul className="navbar-nav px-3 ml-auto">
@@ -63,7 +85,7 @@ const NavBar = () => {
             <React.Fragment>
               <ListItemNavBar
                 iconClass="fa fa-user-circle-o"
-                label={user.name}
+                label={"Welcome, " + user.name}
                 path="/"
               ></ListItemNavBar>
               <ListItemNavBar

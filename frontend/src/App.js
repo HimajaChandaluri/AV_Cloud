@@ -11,6 +11,10 @@ import Register from "./components/register";
 import AddPlan from "./components/addPlan";
 import MyPlan from "./components/myPlan";
 import AdminDashboard from "./components/adminDashboard";
+import UserDashboard from "./components/userDashboard";
+import ScheduleRide from "./components/scheduleRide";
+import VechileList from "./components/vechileList";
+import AddVechile from "./components/addVechile";
 
 class App extends Component {
   state = {};
@@ -25,6 +29,11 @@ class App extends Component {
             <Route path="/register" component={Register}></Route>
             <UserRoute path="/myPlan/addPlan" component={AddPlan}></UserRoute>
             <UserRoute path="/myPlan" component={MyPlan}></UserRoute>
+            <UserRoute path="/myStatus" component={UserDashboard}></UserRoute>
+            <UserRoute path="/mySchedule" component={ScheduleRide}></UserRoute>
+            <UserRoute path="/myVechiles/addVechile" component={AddVechile}></UserRoute>
+            <UserRoute path="/myVechiles" component={VechileList}></UserRoute>
+            
             <AdminRoute
               path="/dashboard"
               component={AdminDashboard}

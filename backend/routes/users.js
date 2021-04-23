@@ -7,6 +7,7 @@ const router = express.Router();
 
 const { User } = require("../models/user");
 const { UserSubscription } = require("../models/userSubscription");
+const { VechileList } = require("../models/vechiles");
 
 router.get("/me", auth, async (req, res) => {
   console.log("req.user: ", req.user, " req.user.email: ", req.user.email);
@@ -50,6 +51,29 @@ router.post("/plan", auth, async (req, res) => {
     ]),
   });
   if (plan) res.status(200).send(plan);
+});
+
+// added
+router.post("/myVechiles", auth, async (req, res) => {
+  console.log("req.body: ", _.pick(req.body, ["vId", "vColor", "vMake", "vModel", "vMileage", "vPspace"]));
+  const plan = await VechileList.addVechile({
+    email: req.user.email,
+    ..._.pick(req.body, [
+      "vId",
+      "vColor",
+      "vMake",
+      "vModel",
+      "vMileage",
+      "vPspace",
+    ]),
+  });
+  if (plan) res.status(200).send(plan);
+});
+
+router.get("/myVechiles", auth, async (req, res) => {
+  const plan = await VechileList.getVechiles();
+  console.log("PLAN1:", plan);
+  res.send(plan);
 });
 
 router.post("/", async (req, res) => {

@@ -28,3 +28,19 @@ export function addNewSubscription(subscriptionData) {
 export function getUserCount() {
   return http.get(apiEndpoint + "/numberOfUsers");
 }
+
+// added
+export function addVechile(vechileData) {
+  return http.post(apiEndpoint + "/myVechiles", {
+    vId: vechileData.vId,
+    vColor: vechileData.vColor,
+    vMake: vechileData.vMake,
+    vModel: vechileData.vModel,
+    vMileage: vechileData.vMileage,
+    vPspace: vechileData.vPspace,
+  });
+}
+export function getVechiles() {
+  return http.get(apiEndpoint + "/myVechiles");
+}
+
