@@ -13,8 +13,8 @@ import MyPlan from "./components/myPlan";
 import AdminDashboard from "./components/adminDashboard";
 import UserDashboard from "./components/userDashboard";
 import ScheduleRide from "./components/scheduleRide";
-import VechileList from "./components/vechileList";
-import AddVechile from "./components/addVechile";
+import VehicleList from "./components/vehicleList";
+import AddVehicle from "./components/addVehicle";
 
 class App extends Component {
   state = {};
@@ -31,8 +31,8 @@ class App extends Component {
             <UserRoute path="/myPlan" component={MyPlan}></UserRoute>
             <UserRoute path="/myStatus" component={UserDashboard}></UserRoute>
             <UserRoute path="/mySchedule" component={ScheduleRide}></UserRoute>
-            <UserRoute path="/myVechiles/addVechile" component={AddVechile}></UserRoute>
-            <UserRoute path="/myVechiles" component={VechileList}></UserRoute>
+            <UserRoute path="/myVehicles/addVehicle" component={AddVehicle}></UserRoute>
+            <UserRoute path="/myVehicles" component={VehicleList}></UserRoute>
             
             <AdminRoute
               path="/dashboard"

@@ -4,6 +4,7 @@ import auth from "../services/authService";
 import Joi from "joi-browser";
 import Form from "./common/form";
 import { Redirect } from "react-router";
+import { scheduleRide } from "../services/userService";
 
 
 class ScheduleRide extends Form {
@@ -13,29 +14,38 @@ class ScheduleRide extends Form {
   };
 
   schema = {
-    vId: Joi.string().required().label("Vechile ID"),
+    vId: Joi.string().required().label("Vehicle ID"),
     Origin: Joi.string().required().label("Origin"),
     Passengers: Joi.string().required().label("Passengers"),
     Destination: Joi.string().required().label("Destination"),
   };
 
-//   doSubmit = async () => {
-//     try {
-//       const { username, password } = this.state.data;
-//       await auth.login(username, password);
-//       const { state } = this.props.location;
-//       window.location = state ? state.from.pathname : "/";
-//     } catch (ex) {
-//       if (ex.response && ex.response.status === 400) {
-//         const errors = { ...this.state.errors };
-//         errors.username = ex.response.data;
-//         this.setState({ errors });
-//       }
-//     }
-//   };
+  doSubmit = async () => {
+    console.log("Submitted");
+    const { vId, Origin, Passengers, Destination, } = this.state.data;
+    // const { paymentType } = this.state.data;
+    const scheduleData = {
+        vId, Origin, Passengers, Destination,
+    };
+    
+    console.log(this.state.data);
+    console.log("Submitted1");
+    console.log(scheduleData);
+    console.log("Submitted2");
+    await scheduleRide(scheduleData);
+    // this.props.history.push("/myVechiles");
+  };
+
+
+//   async componentDidMount() {
+//     const { data: vechiles } = await getVechiles();
+//     console.log("Made it: ", vechiles);
+//     this.setState({vechiles});
+//   }
 
   render() {
     // const user = auth.getCurrentUser();
+    const {vehicles} = this.state;
     return(
         <React.Fragment>
         <div>

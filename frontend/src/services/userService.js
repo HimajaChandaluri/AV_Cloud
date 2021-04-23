@@ -30,17 +30,26 @@ export function getUserCount() {
 }
 
 // added
-export function addVechile(vechileData) {
-  return http.post(apiEndpoint + "/myVechiles", {
-    vId: vechileData.vId,
-    vColor: vechileData.vColor,
-    vMake: vechileData.vMake,
-    vModel: vechileData.vModel,
-    vMileage: vechileData.vMileage,
-    vPspace: vechileData.vPspace,
+export function addVehicle(vehicleData) {
+  return http.post(apiEndpoint + "/myVehicles", {
+    vId: vehicleData.vId,
+    vColor: vehicleData.vColor,
+    vMake: vehicleData.vMake,
+    vModel: vehicleData.vModel,
+    vMileage: vehicleData.vMileage,
+    vPspace: vehicleData.vPspace,
   });
 }
-export function getVechiles() {
-  return http.get(apiEndpoint + "/myVechiles");
+export function getVehicles() {
+  return http.get(apiEndpoint + "/myVehicles");
+}
+
+export function scheduleRide(scheduleData) {
+  return http.post(apiEndpoint + "", {
+    vId: scheduleData.vId,
+    Origin: scheduleData.Origin,
+    Passengers: scheduleData.Passengers,
+    Destination: scheduleData.Destination,
+  });
 }
 
