@@ -15,6 +15,7 @@ import UserDashboard from "./components/userDashboard";
 import ScheduleRide from "./components/scheduleRide";
 import VehicleList from "./components/vehicleList";
 import AddVehicle from "./components/addVehicle";
+import SensorInfo from "./components/sensorInfo";
 
 class App extends Component {
   state = {};
@@ -33,6 +34,7 @@ class App extends Component {
             <UserRoute path="/mySchedule" component={ScheduleRide}></UserRoute>
             <UserRoute path="/myVehicles/addVehicle" component={AddVehicle}></UserRoute>
             <UserRoute path="/myVehicles" component={VehicleList}></UserRoute>
+            <UserRoute path="/sensorinfo" component={SensorInfo}></UserRoute>
             
             <AdminRoute
               path="/dashboard"

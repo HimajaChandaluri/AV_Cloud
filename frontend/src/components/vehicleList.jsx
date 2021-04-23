@@ -35,12 +35,7 @@ class VehicleList extends Component {
         //       vMake: item.vMake,
         //     });
         // });
-        console.log(vehicles.length);
-        console.log(vehicles[0].vId);
-
-
         this.setState({vehicles});
-        //console.log(this.state[0].vColor);
         console.log(this.state.vehicles);
     }
 
