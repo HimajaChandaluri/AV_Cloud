@@ -6,6 +6,7 @@ import RoadService from "./roadService";
 import auth from "../services/authService";
 import { Link } from "react-router-dom";
 
+
 const user = auth.getCurrentUser();
 // let user1 = user.name.slice(0,1).toUpperCase() + user.name.slice(1,user.name.length);
 let user1 = "";
@@ -13,6 +14,8 @@ if(user != null)
 {
     user1 = user.name.slice(0,1).toUpperCase() + user.name.slice(1,user.name.length);
 }
+
+
 
 class UserDashboard extends Component {
     state = {};

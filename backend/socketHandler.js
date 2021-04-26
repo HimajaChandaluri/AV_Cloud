@@ -22,11 +22,11 @@ class SocketHandler {
   }
   
   // added
-  static getSockets() {
+  static getSocketsofUsers() {
     const SocketsArray = [];
     sockets.forEach((socket) => {
       const user = jwt.verify(socket.jwtToken, config.get("jwtPrivateKey"));
-      if (!user.isAdmin) {
+      if (!(user.isAdmin)) {
         console.log("USER BEING RETURNED: ", user.email);
         SocketsArray.push(socket.socketRef);
       }

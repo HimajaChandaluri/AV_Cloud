@@ -90,6 +90,12 @@ router.get("/myVehicles", auth, async (req, res) => {
   res.send(plan);
 });
 
+router.get("/myRides", auth, async (req, res) => {
+  const plan = await VehicleList.getRides();
+  console.log("PLAN2:", plan);
+  res.send(plan);
+});
+
 router.post("/", async (req, res) => {
   console.log("req.body: ", _.pick(req.body, ["name", "email", "password"]));
   const result = User.validate(_.pick(req.body, ["name", "email", "password"]));

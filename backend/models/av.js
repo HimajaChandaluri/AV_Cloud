@@ -20,6 +20,12 @@ const avData = [
     status: "active",
   },
 ];
+const avData1 = [
+  {
+    vId: "1",
+    state: "Idle",
+  },
+];
 
 class AV {
   static getCount() {
@@ -46,6 +52,15 @@ class AV {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(avData);
+      }, 300);
+    });
+  }
+
+  // added
+  static getListOfConnectedAV() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(avData1);
       }, 300);
     });
   }

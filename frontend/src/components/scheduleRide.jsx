@@ -35,7 +35,7 @@ class ScheduleRide extends Form {
     console.log(scheduleData);
     console.log("Submitted2");
     await scheduleRide(scheduleData);
-    this.props.history.push("/mystatus");
+    this.props.history.push("/myRides");
   };
 
 

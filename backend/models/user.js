@@ -16,6 +16,12 @@ const userArray = [
     password: "$2b$10$NP3F7.ZCmXTMAD7fL99jPuQCUTBogS6U5vzLrKyn4yE8x/h/nJ4bS",
     isAdmin: false,
   },
+  {
+    name: "admin",
+    email: "admin1@admin.com",
+    password: "admin12345",
+    isAdmin: true,
+  },
 ];
 
 class User {

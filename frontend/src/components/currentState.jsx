@@ -1,9 +1,62 @@
 import React, { Component } from "react";
 import withCardView from "./common/withCardView";
-// import { getUserCount } from "../services/userService";
+
+import { getJwt } from "../services/authService";
+import { getAvStates } from "../services/avService";
+
+import _ from "lodash";
+
+import { io } from "socket.io-client";
+const socket = io("http://localhost:3900", {
+  query: {
+    jwtToken: getJwt(),
+  },
+});
+
 
 class CurrentState extends Component {
-  state = { current: "Idle"};
+    state = { current: "Idle",
+        currentState: [],
+      };
+
+componentDidMount() {
+    //this.populateAVStatusAndCountData();
+    this.populateAVStatusListData();
+    socket.on("avStateUpdated", this.reRenderAV);
+  }
+
+//   async populateAVStatusAndCountData() {
+//     console.log("In data");
+//     const { data: avStates } = await getAvStates();
+//     console.log("AV STATES: ", avStates);
+//     const avStatusDistributionData = [];
+//     avStates.map((item) => {
+//       avStatusDistributionData.push({
+//         vId: item.vId,  
+//         state: item.state,
+//       });
+//     });
+//     this.setState({ avStatusDistributionData });
+//     console.log("populated Count data");
+// }
+async populateAVStatusListData() {
+    const { data: avStatus } = await getAvStates();
+    console.log("LIST DATA: ", avStatus);
+    this.setState({ avStatus });
+  }
+
+  reRenderAV = (data) => {
+    const avStates = this.state.currentState;
+    // _.remove(avStates, (avStatus) => {
+    //     return avStatus.number == data.number;
+    //   });
+    console.log("SOCKET INCOMING DATA: ", data);
+    avStates.push(data);
+    // this.setState({ avStates });
+    console.log("Populating count data");
+    //this.populateAVStatusAndCountData();
+  };
+
 
 //   async componentDidMount() {
 //     const { data: userCount } = await getUserCount();
@@ -23,7 +76,7 @@ class CurrentState extends Component {
           }}
         ></div>
         <p className="text-center" style={{ fontSize: "50px" }}>
-          {this.state.current}
+        {this.state.current}
         </p>
       </React.Fragment>
     );

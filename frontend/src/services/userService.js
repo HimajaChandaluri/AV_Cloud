@@ -40,8 +40,13 @@ export function addVehicle(vehicleData) {
     vPspace: vehicleData.vPspace,
   });
 }
+
 export function getVehicles() {
   return http.get(apiEndpoint + "/myVehicles");
+}
+
+export function getRides() {
+  return http.get(apiEndpoint + "/myRides");
 }
 
 export function scheduleRide(scheduleData) {

@@ -17,4 +17,19 @@ router.post("/avStatusUpdate", async (req, res) => {
   res.status(200).send();
 });
 
+// added
+router.post("/avVechileUpdate", async (req, res) => {
+  const userSockets = SocketHandler.getSocketsOfUsers();
+  
+  userSockets.forEach((socket) => {
+    console.log("Emitting");
+    socket.emit("avVehicleUpdate", {
+      number: req.body.number,
+      status: req.body.status,
+    });
+  });
+  console.log("OUT OF FOR");
+  res.status(200).send();
+});
+
 module.exports = router;

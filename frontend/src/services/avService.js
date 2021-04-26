@@ -6,6 +6,10 @@ const apiEndpoint = apiUrl + "/av";
 export function getAVCount() {
   return http.get(apiEndpoint + "/numberOfAVs");
 }
+// added
+export function getAvStates() {
+  return http.get(apiEndpoint + "/avStatus");
+}
 
 export function getAVStateAndCount() {
   return http.get(apiEndpoint + "/statesOfAVs");

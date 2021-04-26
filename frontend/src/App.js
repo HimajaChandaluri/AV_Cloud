@@ -16,6 +16,8 @@ import ScheduleRide from "./components/scheduleRide";
 import VehicleList from "./components/vehicleList";
 import AddVehicle from "./components/addVehicle";
 import SensorInfo from "./components/sensorInfo";
+import MyRides from "./components/myRides";
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -37,6 +39,7 @@ class App extends Component {
             <UserRoute path="/myVehicles/addVehicle" component={AddVehicle}></UserRoute>
             <UserRoute path="/myVehicles" component={VehicleList}></UserRoute>
             <UserRoute path="/sensorinfo" component={SensorInfo}></UserRoute>
+            <UserRoute path="/myRides" component={MyRides}></UserRoute>
             
             <AdminRoute
               path="/dashboard"

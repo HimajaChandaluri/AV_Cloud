@@ -80,6 +80,18 @@ const scheduleRideArray = [
           }, 300);
         });
       }
+
+      static getRides() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            console.log("In '123()'");
+            const result = {};
+            // console.log(result + "RESULT");
+            //console.log(userVehicleArray[0].vColor + "RESULT1");
+            resolve(scheduleRideArray);
+          }, 300);
+        });
+      }
   }
   module.exports.VehicleList = VehicleList;
   

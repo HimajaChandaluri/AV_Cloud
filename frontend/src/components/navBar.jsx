@@ -48,6 +48,11 @@ const NavBar = () => {
                 label="Dashboard"
                 path="/mystatus"
               ></ListItemNavBar>
+              <ListItemNavBar
+                iconClass="fa fa-list-alt"
+                label="View Rides History"
+                path="/myRides"
+              ></ListItemNavBar>
                <ListItemNavBar
                 iconClass="fa fa-list-alt"
                 label="Schedule a Ride"
