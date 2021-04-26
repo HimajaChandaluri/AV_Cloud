@@ -20,6 +20,19 @@ class SocketHandler {
     });
     return adminSocketsArray;
   }
+  
+  // added
+  static getSockets() {
+    const SocketsArray = [];
+    sockets.forEach((socket) => {
+      const user = jwt.verify(socket.jwtToken, config.get("jwtPrivateKey"));
+      if (!user.isAdmin) {
+        console.log("USER BEING RETURNED: ", user.email);
+        SocketsArray.push(socket.socketRef);
+      }
+    });
+    return SocketsArray;
+  }
 
   static addSocket(jwtToken, socketRef) {
     sockets.push({ jwtToken, socketRef });

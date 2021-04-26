@@ -45,7 +45,7 @@ export function getVehicles() {
 }
 
 export function scheduleRide(scheduleData) {
-  return http.post(apiEndpoint + "", {
+  return http.post(apiEndpoint + "/scheduleRide", {
     vId: scheduleData.vId,
     Origin: scheduleData.Origin,
     Passengers: scheduleData.Passengers,

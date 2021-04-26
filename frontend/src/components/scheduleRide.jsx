@@ -6,6 +6,8 @@ import Form from "./common/form";
 import { Redirect } from "react-router";
 import { scheduleRide } from "../services/userService";
 
+import { Button } from 'reactstrap';
+
 
 class ScheduleRide extends Form {
     state = {
@@ -33,7 +35,7 @@ class ScheduleRide extends Form {
     console.log(scheduleData);
     console.log("Submitted2");
     await scheduleRide(scheduleData);
-    // this.props.history.push("/myVechiles");
+    this.props.history.push("/mystatus");
   };
 
 
@@ -41,6 +43,7 @@ class ScheduleRide extends Form {
 //     const { data: vechiles } = await getVechiles();
 //     console.log("Made it: ", vechiles);
 //     this.setState({vechiles});
+// {this.renderButton("Submit")}
 //   }
 
   render() {
@@ -59,6 +62,7 @@ class ScheduleRide extends Form {
             {this.renderInput("Passengers", "# of passengers")}
             {this.renderInput("Destination", "Destination")}
             {this.renderButton("Submit")}
+
           </form>
         </div>
         </React.Fragment>

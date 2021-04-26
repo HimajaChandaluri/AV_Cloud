@@ -70,6 +70,20 @@ router.post("/myVehicles", auth, async (req, res) => {
   if (plan) res.status(200).send(plan);
 });
 
+router.post("/scheduleRide", auth, async (req, res) => {
+  console.log("req.body: ", _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]));
+  const plan = await VehicleList.scheduleRide({
+    email: req.user.email,
+    ..._.pick(req.body, [
+      "vId",
+      "Origin",
+      "Passengers",
+      "Destination",
+    ]),
+  });
+  if (plan) res.status(200).send(plan);
+});
+
 router.get("/myVehicles", auth, async (req, res) => {
   const plan = await VehicleList.getVehicles();
   console.log("PLAN1:", plan);

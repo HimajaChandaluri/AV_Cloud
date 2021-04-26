@@ -14,6 +14,17 @@ const userVehicleArray = [
     },
   ];
 
+const scheduleRideArray = [
+    {
+      vId: "",
+      Origin: "",
+      Passengers: "",
+      Destination: "",
+
+
+    },
+  ];
+
   class VehicleList {
     static getVehicles() {
         return new Promise((resolve) => {
@@ -50,6 +61,22 @@ const userVehicleArray = [
             userVehicleArray.push(vehicleData);
             console.log("PUSHED: ", userVehicleArray);
             resolve(userVehicleArray);
+          }, 300);
+        });
+      }
+
+      static scheduleRide(ride) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const scheduleData = {
+              vId: ride.vId,
+              Origin: ride.Origin,
+              Passengers: ride.Passengers,
+              Destination: ride.Destination,
+            };
+            scheduleRideArray.push(scheduleData);
+            console.log("PUSHED12341234: ", scheduleRideArray);
+            resolve(scheduleRideArray);
           }, 300);
         });
       }

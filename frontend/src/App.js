@@ -17,6 +17,8 @@ import VehicleList from "./components/vehicleList";
 import AddVehicle from "./components/addVehicle";
 import SensorInfo from "./components/sensorInfo";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class App extends Component {
   state = {};
   render() {
