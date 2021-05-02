@@ -12,6 +12,11 @@ const { VehicleList } = require("../models/vehicles");
 router.get("/me", auth, async (req, res) => {
   console.log("req.user: ", req.user, " req.user.email: ", req.user.email);
   const user = await User.findByEmail(req.user.email);
+  // console.log(
+  //   "Response User is : ",
+  //   _.pick(user.data, "id", "name", "username")
+  // );
+  // res.send(_.pick(user.data, "id", "name", "username"));
   res.send(_.pick(user, "_id", "name", "email", "isAdmin"));
 });
 
@@ -55,7 +60,17 @@ router.post("/plan", auth, async (req, res) => {
 
 // added
 router.post("/myVehicles", auth, async (req, res) => {
-  console.log("req.body: ", _.pick(req.body, ["vId", "vColor", "vMake", "vModel", "vMileage", "vPspace"]));
+  console.log(
+    "req.body: ",
+    _.pick(req.body, [
+      "vId",
+      "vColor",
+      "vMake",
+      "vModel",
+      "vMileage",
+      "vPspace",
+    ])
+  );
   const plan = await VehicleList.addVehicle({
     email: req.user.email,
     ..._.pick(req.body, [
@@ -71,15 +86,13 @@ router.post("/myVehicles", auth, async (req, res) => {
 });
 
 router.post("/scheduleRide", auth, async (req, res) => {
-  console.log("req.body: ", _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]));
+  console.log(
+    "req.body: ",
+    _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"])
+  );
   const plan = await VehicleList.scheduleRide({
     email: req.user.email,
-    ..._.pick(req.body, [
-      "vId",
-      "Origin",
-      "Passengers",
-      "Destination",
-    ]),
+    ..._.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]),
   });
   if (plan) res.status(200).send(plan);
 });

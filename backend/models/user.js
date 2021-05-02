@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const _ = require("lodash");
 
+const http = require("../services/httpService");
+
 const userArray = [
   {
     name: "admin",
@@ -26,6 +28,7 @@ const userArray = [
 
 class User {
   static findByEmail(email) {
+    // return http.get("https://jsonplaceholder.typicode.com/users/1");
     return new Promise((resolve) => {
       setTimeout(() => {
         console.log("In 'findByEmail()', EMAIL: ", email);

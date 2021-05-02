@@ -6,12 +6,9 @@ import Form from "./common/form";
 import { Redirect } from "react-router";
 import { scheduleRide } from "../services/userService";
 
-import { Button } from 'reactstrap';
-
-
 class ScheduleRide extends Form {
-    state = {
-    data: { vId: "", Origin: "", Passengers: "", Destination: ""},
+  state = {
+    data: { vId: "", Origin: "", Passengers: "", Destination: "" },
     errors: {},
   };
 
@@ -24,12 +21,15 @@ class ScheduleRide extends Form {
 
   doSubmit = async () => {
     console.log("Submitted");
-    const { vId, Origin, Passengers, Destination, } = this.state.data;
+    const { vId, Origin, Passengers, Destination } = this.state.data;
     // const { paymentType } = this.state.data;
     const scheduleData = {
-        vId, Origin, Passengers, Destination,
+      vId,
+      Origin,
+      Passengers,
+      Destination,
     };
-    
+
     console.log(this.state.data);
     console.log("Submitted1");
     console.log(scheduleData);
@@ -38,22 +38,22 @@ class ScheduleRide extends Form {
     this.props.history.push("/myRides");
   };
 
-
-//   async componentDidMount() {
-//     const { data: vechiles } = await getVechiles();
-//     console.log("Made it: ", vechiles);
-//     this.setState({vechiles});
-// {this.renderButton("Submit")}
-//   }
+  //   async componentDidMount() {
+  //     const { data: vechiles } = await getVechiles();
+  //     console.log("Made it: ", vechiles);
+  //     this.setState({vechiles});
+  // {this.renderButton("Submit")}
+  //   }
 
   render() {
     // const user = auth.getCurrentUser();
-    const {vehicles} = this.state;
-    return(
-        <React.Fragment>
+    const { vehicles } = this.state;
+    return (
+      <React.Fragment>
         <div>
-             <h1 className="text-center" style={{ marginBottom: "25px" }}>
-          Schedule Your Ride</h1>
+          <h1 className="text-center" style={{ marginBottom: "25px" }}>
+            Schedule Your Ride
+          </h1>
         </div>
         <div>
           <form onSubmit={this.handleSubmit}>
@@ -62,13 +62,11 @@ class ScheduleRide extends Form {
             {this.renderInput("Passengers", "# of passengers")}
             {this.renderInput("Destination", "Destination")}
             {this.renderButton("Submit")}
-
           </form>
         </div>
-        </React.Fragment>
-        );
-       
-    }   
+      </React.Fragment>
+    );
+  }
 }
 
 export default ScheduleRide;
