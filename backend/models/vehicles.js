@@ -5,6 +5,7 @@ const _ = require("lodash");
 
 const userVehicleArray = [
     {
+      email: "",
       vId: "",
       vColor: "",
       vMake: "",
@@ -16,6 +17,7 @@ const userVehicleArray = [
 
 const scheduleRideArray = [
     {
+      email: "",
       vId: "",
       Origin: "",
       Passengers: "",
@@ -26,11 +28,26 @@ const scheduleRideArray = [
   ];
 
   class VehicleList {
-    static getVehicles() {
+    static getVehicles(email) {
         return new Promise((resolve) => {
           setTimeout(() => {
-            console.log("In '123()'");
+            console.log("In 'getMyVehicles()', EMAIL: ", email);
             const result = {};
+
+            const task_names = userVehicleArray.map(function (task) {
+              return task.vId; 
+            });
+            const t1 = userVehicleArray.filter(function (task) {
+              return task.email === email; 
+            });
+
+            console.log("t1", t1); 
+          
+
+            console.log(task_names); 
+
+            // userVehicleArray
+            // .filter((vehicleList) => vehicleList.email == email)
             // userVechileArray
             //   .map((userVechile, 0) => {
             //     console.log({userVechile} + "LOLO");
@@ -40,10 +57,10 @@ const scheduleRideArray = [
             //     robj[obj.key] = obj.value
             //     return obj
             // })
-            console.log(Object.keys(userVehicleArray) + " RESULT432");
+           // console.log(Object.keys(userVehicleArray) + " RESULT432");
             // console.log(result + "RESULT");
-            console.log(userVehicleArray[0].vColor + "RESULT1");
-            resolve(userVehicleArray);
+            // console.log(userVehicleArray[0].vColor + "RESULT1");
+            resolve(t1);
           }, 300);
         });
       }
@@ -51,6 +68,7 @@ const scheduleRideArray = [
         return new Promise((resolve) => {
           setTimeout(() => {
             const vehicleData = {
+              email: vehicle.email,
               vId: vehicle.vId,
               vColor: vehicle.vColor,
               vMake: vehicle.vMake,
@@ -58,7 +76,17 @@ const scheduleRideArray = [
               vMileage: vehicle.vMileage,
               vPspace: vehicle.vPspace,
             };
-            userVehicleArray.push(vehicleData);
+
+            const task_names = userVehicleArray.map(function (task) {
+              return task.vId; 
+          });
+
+            var n = task_names.includes(vehicle.vId);
+            if(!n)
+            {
+              userVehicleArray.push(vehicleData);
+            }
+            //userVehicleArray.push(vehicleData);
             console.log("PUSHED: ", userVehicleArray);
             resolve(userVehicleArray);
           }, 300);
@@ -69,6 +97,7 @@ const scheduleRideArray = [
         return new Promise((resolve) => {
           setTimeout(() => {
             const scheduleData = {
+              email: ride.email,
               vId: ride.vId,
               Origin: ride.Origin,
               Passengers: ride.Passengers,
@@ -81,14 +110,18 @@ const scheduleRideArray = [
         });
       }
 
-      static getRides() {
+      static getRides(email) {
         return new Promise((resolve) => {
           setTimeout(() => {
             console.log("In '123()'");
             const result = {};
+
+            const t1 = scheduleRideArray.filter(function (task) {
+              return task.email === email; 
+            });
             // console.log(result + "RESULT");
             //console.log(userVehicleArray[0].vColor + "RESULT1");
-            resolve(scheduleRideArray);
+            resolve(t1);
           }, 300);
         });
       }

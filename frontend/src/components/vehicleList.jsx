@@ -29,7 +29,7 @@ class VehicleList extends Component {
         console.log("Made it: ", vehicles);
         const data1 = [];
         // vechiles.map((item) => {
-        //     data1.push({
+        //     data1.push({g
         //       vId: item.vId,
         //       vColor: item.vColor,
         //       vMake: item.vMake,
@@ -50,12 +50,21 @@ class VehicleList extends Component {
                     <h1 className="text-center" style={{ marginBottom: "25px" }}>
                         {user1 + "'s Vehicles"}</h1>
                 </div>
-                <Link
-                    className="btn btn-info"
-                    to={{
-                        pathname: "/myVehicles/addVehicle",
-                    }}
-                >Add Vehicle</Link>
+                <div> 
+                    <Link
+                        className="btn btn-info"
+                        to={{
+                            pathname: "/myVehicles/addVehicle",
+                        }}
+                    >Add Vehicle</Link>
+                    <Link
+                        className="btn btn-info"
+                        to={{
+                            pathname: "/mySchedule",
+                        }}
+                    >Schedule Ride</Link>
+                </div>
+                
                 <p></p>
                 <Table data={vehicles} columns={this.columns} keyAtt="vId" ></Table>
                 

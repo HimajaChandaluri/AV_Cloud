@@ -5,6 +5,7 @@ import Form from "./common/form";
 import { Redirect } from "react-router";
 import { addVehicle } from "../services/userService";
 
+const user = auth.getCurrentUser();
 
 class AddVehicle extends Form {
     state = {
@@ -22,24 +23,36 @@ class AddVehicle extends Form {
   };
   // adding
   doSubmit = async () => {
-    console.log("Submitted");
-    const { vId, vColor, vMake, vModel, vMileage, vPspace } = this.state.data;
-    // const { paymentType } = this.state.data;
-    const vehicleData = {
-       vId,
-       vColor,
-       vMake,
-       vModel,
-       vMileage,
-       vPspace,
-    };
+
+    try{
+      console.log("Submitted");
+      const { vId, vColor, vMake, vModel, vMileage, vPspace } = this.state.data;
+      // const { paymentType } = this.state.data;
+      const vehicleData = {
+        vId,
+        vColor,
+        vMake,
+        vModel,
+        vMileage,
+        vPspace,
+      };
     
-    console.log(this.state.data);
-    console.log("Submitted1");
-    console.log(vehicleData);
-    console.log("Submitted2");
-    await addVehicle(vehicleData);
-    this.props.history.push("/myVehicles");
+      console.log(this.state.data);
+      console.log("Submitted1");
+      console.log(vehicleData);
+      console.log("Submitted2");
+      await addVehicle(vehicleData);
+      this.props.history.push("/myVehicles");
+    }
+    catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        console.log("CAUGHT HERE");
+        const errors = this.state.errors;
+        errors.vId = ex.response.data;
+        this.setState({ errors });
+      }
+    }
+
   };
 
 
