@@ -22,7 +22,6 @@ const avData = [
 ];
 const avData1 = [
   {
-    vId: "1",
     state: "Idle",
   },
 ];
