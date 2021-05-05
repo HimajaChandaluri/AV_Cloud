@@ -60,7 +60,6 @@ router.post("/plan", auth, async (req, res) => {
 
 // added
 router.post("/myVehicles", auth, async (req, res) => {
-<<<<<<< HEAD
   console.log("req.body: ", _.pick(req.body, ["vId", "vColor", "vMake", "vModel", "vMileage", "vPspace"]));
 
   let user = await VehicleList.getVehicles(req.user.email);
@@ -76,19 +75,6 @@ router.post("/myVehicles", auth, async (req, res) => {
   if (n) return res.status(400).send("ID already exists");
 
   
-=======
-  console.log(
-    "req.body: ",
-    _.pick(req.body, [
-      "vId",
-      "vColor",
-      "vMake",
-      "vModel",
-      "vMileage",
-      "vPspace",
-    ])
-  );
->>>>>>> fa9fb49caf46507da1fd8dc35d436374d0d4c757
   const plan = await VehicleList.addVehicle({
     email: req.user.email,
     ..._.pick(req.body, [
@@ -104,7 +90,6 @@ router.post("/myVehicles", auth, async (req, res) => {
 });
 
 router.post("/scheduleRide", auth, async (req, res) => {
-<<<<<<< HEAD
   console.log("req.body: ", _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]));
   
   let user = await VehicleList.getVehicles(req.user.email);
@@ -118,12 +103,6 @@ router.post("/scheduleRide", auth, async (req, res) => {
 
   if (!n) return res.status(400).send("Vehicle ID Dosent Exist");
   
-=======
-  console.log(
-    "req.body: ",
-    _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"])
-  );
->>>>>>> fa9fb49caf46507da1fd8dc35d436374d0d4c757
   const plan = await VehicleList.scheduleRide({
     email: req.user.email,
     ..._.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]),
