@@ -60,17 +60,21 @@ router.post("/plan", auth, async (req, res) => {
 
 // added
 router.post("/myVehicles", auth, async (req, res) => {
-  console.log(
-    "req.body: ",
-    _.pick(req.body, [
-      "vId",
-      "vColor",
-      "vMake",
-      "vModel",
-      "vMileage",
-      "vPspace",
-    ])
-  );
+  console.log("req.body: ", _.pick(req.body, ["vId", "vColor", "vMake", "vModel", "vMileage", "vPspace"]));
+
+  let user = await VehicleList.getVehicles(req.user.email);
+  console.log("THIS IS ADDED LOG: " , user);
+
+  const task_names = user.map(function (task) {
+    return task.vId; 
+});
+
+  var n = task_names.includes(req.body.vId);
+
+
+  if (n) return res.status(400).send("ID already exists");
+
+  
   const plan = await VehicleList.addVehicle({
     email: req.user.email,
     ..._.pick(req.body, [
@@ -86,10 +90,19 @@ router.post("/myVehicles", auth, async (req, res) => {
 });
 
 router.post("/scheduleRide", auth, async (req, res) => {
-  console.log(
-    "req.body: ",
-    _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"])
-  );
+  console.log("req.body: ", _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]));
+  
+  let user = await VehicleList.getVehicles(req.user.email);
+  console.log("THIS IS ADDED LOG: " , user);
+
+  const task_names = user.map(function (task) {
+    return task.vId; 
+});
+  console.log("THIS IS ADDED: " , task_names);
+  var n = task_names.includes(req.body.vId);
+
+  if (!n) return res.status(400).send("Vehicle ID Dosent Exist");
+  
   const plan = await VehicleList.scheduleRide({
     email: req.user.email,
     ..._.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]),
@@ -98,13 +111,13 @@ router.post("/scheduleRide", auth, async (req, res) => {
 });
 
 router.get("/myVehicles", auth, async (req, res) => {
-  const plan = await VehicleList.getVehicles();
+  const plan = await VehicleList.getVehicles(req.user.email);
   console.log("PLAN1:", plan);
   res.send(plan);
 });
 
 router.get("/myRides", auth, async (req, res) => {
-  const plan = await VehicleList.getRides();
+  const plan = await VehicleList.getRides(req.user.email);
   console.log("PLAN2:", plan);
   res.send(plan);
 });

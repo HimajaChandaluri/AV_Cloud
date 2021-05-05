@@ -5,6 +5,11 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import { Redirect } from "react-router";
 import { scheduleRide } from "../services/userService";
+import Select from "react-dropdown-select";
+
+import { Button } from 'reactstrap';
+import { set } from "lodash";
+
 
 class ScheduleRide extends Form {
   state = {
@@ -20,36 +25,46 @@ class ScheduleRide extends Form {
   };
 
   doSubmit = async () => {
-    console.log("Submitted");
-    const { vId, Origin, Passengers, Destination } = this.state.data;
-    // const { paymentType } = this.state.data;
-    const scheduleData = {
-      vId,
-      Origin,
-      Passengers,
-      Destination,
-    };
 
-    console.log(this.state.data);
-    console.log("Submitted1");
-    console.log(scheduleData);
-    console.log("Submitted2");
-    await scheduleRide(scheduleData);
-    this.props.history.push("/myRides");
+    try{
+        console.log("Submitted");
+        const { vId, Origin, Passengers, Destination, } = this.state.data;
+        // const { paymentType } = this.state.data;
+        const scheduleData = {
+            vId, Origin, Passengers, Destination,
+        };
+        console.log(this.state.data);
+        console.log("Submitted1");
+        console.log(scheduleData);
+        console.log("Submitted2");
+        await scheduleRide(scheduleData);
+        this.props.history.push("/myRides");
+    }
+    catch(ex){
+        if (ex.response && ex.response.status === 400) {
+            console.log("CAUGHT HERE");
+            const errors = this.state.errors;
+            errors.vId = ex.response.data;
+            this.setState({ errors });
+          }
+    }
   };
 
-  //   async componentDidMount() {
-  //     const { data: vechiles } = await getVechiles();
-  //     console.log("Made it: ", vechiles);
-  //     this.setState({vechiles});
-  // {this.renderButton("Submit")}
-  //   }
+
+//   async componentDidMount() {
+//     const { data: vechiles } = await getVechiles(email);
+//     console.log("Made it: ", vechiles);
+//     this.setState({vechiles});
+// {this.renderButton("Submit")}
+//   }
+
 
   render() {
     // const user = auth.getCurrentUser();
-    const { vehicles } = this.state;
-    return (
-      <React.Fragment>
+    const {vehicles} = this.state;
+    
+    return(
+        <React.Fragment>
         <div>
           <h1 className="text-center" style={{ marginBottom: "25px" }}>
             Schedule Your Ride
