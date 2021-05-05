@@ -115,8 +115,9 @@ router.post("/", async (req, res) => {
   if (result.error)
     return res.status(400).send(result.error.details[0].message);
 
-  let user = await User.findByEmail(req.body.email);
-  if (user) return res.status(400).send("Email already exists");
+  let { data: user } = await User.findByEmail(req.body.email);
+  // console.log("IF USER EXISTS: ", user, " Leng: ", user.length);
+  if (user.length > 0) return res.status(400).send("Email already exists");
 
   const { name, email, password } = req.body;
 
@@ -124,15 +125,19 @@ router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const encPassword = await bcrypt.hash(password, salt);
 
-  user = await User.addNew(name, email, encPassword);
-  const { isAdmin } = user;
+  const { data: userArr } = await User.addNew(name, email, encPassword);
+  const userObj = userArr[0];
+  // console.log("USER: ", userObj);
+  res.send(userObj);
+
+  const { isAdmin } = userObj;
   const token = User.generateAuthToken(name, email, isAdmin);
 
   console.log("Sending response...", token);
   res
     .header("x-auth-token", token)
     .header("access-control-expose-headers", "x-auth-token")
-    .send(_.pick(user, ["name", "email"]));
+    .send(_.pick(userObj, ["name", "email"]));
 });
 
 module.exports = router;

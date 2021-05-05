@@ -4,6 +4,7 @@ const config = require("config");
 const _ = require("lodash");
 
 const http = require("../services/httpService");
+const { param } = require("../routes/users");
 
 const userArray = [
   {
@@ -12,12 +13,12 @@ const userArray = [
     password: "$2b$10$2nqIaxdFY9s57nrrMjEM2.5gD.KQ3NF7/wU7taPNAC.lVf7bZbbYS",
     isAdmin: true,
   },
-  {
-    name: "Himaja",
-    email: "himaja.chandaluri@gmail.com",
-    password: "$2b$10$NP3F7.ZCmXTMAD7fL99jPuQCUTBogS6U5vzLrKyn4yE8x/h/nJ4bS",
-    isAdmin: false,
-  },
+  // {
+  //   name: "Himaja",
+  //   email: "himaja.chandaluri@gmail.com",
+  //   password: "$2b$10$NP3F7.ZCmXTMAD7fL99jPuQCUTBogS6U5vzLrKyn4yE8x/h/nJ4bS",
+  //   isAdmin: false,
+  // },
   {
     name: "admin",
     email: "admin1@admin.com",
@@ -28,7 +29,11 @@ const userArray = [
 
 class User {
   static findByEmail(email) {
-    // return http.get("https://jsonplaceholder.typicode.com/users/1");
+    return http.get("http://35.225.37.119:8080/user/search?", {
+      params: {
+        email: email,
+      },
+    });
     return new Promise((resolve) => {
       setTimeout(() => {
         console.log("In 'findByEmail()', EMAIL: ", email);
@@ -42,27 +47,32 @@ class User {
   }
 
   static addNew(name, email, password) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log(
-          "In 'addNew()', NAME: ",
-          name,
-          ", EMAIL: ",
-          email,
-          ", PASS: ",
-          password
-        );
-        const user = {
-          name: name,
-          email: email,
-          password: password,
-          isAdmin: false,
-        };
-        userArray.push(user);
-        console.log("PUSHED: ", userArray);
-        resolve(user);
-      }, 300);
+    return http.post("http://35.225.37.119:8080/user/add", {
+      name: name,
+      email: email,
+      userpassword: password,
     });
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     console.log(
+    //       "In 'addNew()', NAME: ",
+    //       name,
+    //       ", EMAIL: ",
+    //       email,
+    //       ", PASS: ",
+    //       password
+    //     );
+    //     const user = {
+    //       name: name,
+    //       email: email,
+    //       password: password,
+    //       isAdmin: false,
+    //     };
+    //     userArray.push(user);
+    //     console.log("PUSHED: ", userArray);
+    //     resolve(user);
+    //   }, 300);
+    // });
   }
 
   static getCount() {
