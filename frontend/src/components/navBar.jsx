@@ -29,21 +29,21 @@ const NavBar = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav px-3">
-          {user && user.isAdmin && (
+          {user && user.isadmin && (
             <ListItemNavBar
               iconClass="fa fa-bar-chart"
               label="Dashboard"
               path="/dashboard"
             ></ListItemNavBar>
           )}
-          {user && !user.isAdmin && (
+          {user && !user.isadmin && (
             <React.Fragment>
-            <ListItemNavBar
-              iconClass="fa fa-list-alt"
-              label="My Plan"
-              path="/myplan"
-            ></ListItemNavBar>
-            <ListItemNavBar
+              <ListItemNavBar
+                iconClass="fa fa-list-alt"
+                label="My Plan"
+                path="/myplan"
+              ></ListItemNavBar>
+              <ListItemNavBar
                 iconClass="fa fa-list-alt"
                 label="Dashboard"
                 path="/mystatus"
@@ -53,7 +53,7 @@ const NavBar = () => {
                 label="View Rides History"
                 path="/myRides"
               ></ListItemNavBar>
-               <ListItemNavBar
+              <ListItemNavBar
                 iconClass="fa fa-list-alt"
                 label="Schedule a Ride"
                 path="/mySchedule"
@@ -68,7 +68,7 @@ const NavBar = () => {
                 label="Add a Vehicle"
                 path="/myVehicles/addVehicle"
               ></ListItemNavBar>
-              </React.Fragment>
+            </React.Fragment>
           )}
         </ul>
         <ul className="navbar-nav px-3 ml-auto">

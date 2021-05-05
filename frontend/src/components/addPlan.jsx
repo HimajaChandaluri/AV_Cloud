@@ -37,15 +37,17 @@ class AddPlan extends Form {
     let startDate;
     let endDate;
     if (futurePlans && futurePlans.length > 0) {
+      console.log("endDate: ", futurePlans[0].enddate);
       const { start, end } = this.calculateStartAndEndDate(
-        futurePlans[0].endDate
+        futurePlans[0].enddate
       );
       startDate = start;
       endDate = end;
       tag = "future";
     } else if (currentPlan && currentPlan.length > 0) {
+      console.log("endDateC: ", currentPlan[0].enddate);
       const { start, end } = this.calculateStartAndEndDate(
-        currentPlan[0].endDate
+        currentPlan[0].enddate
       );
       startDate = start;
       endDate = end;
@@ -72,8 +74,9 @@ class AddPlan extends Form {
       endDate,
       paymentType,
       tag,
-      amount: "$20",
+      amount: 20,
     };
+    console.log("subscriptionData: ", subscriptionData);
     await addNewSubscription(subscriptionData);
     this.props.history.push("/myPlan");
   };

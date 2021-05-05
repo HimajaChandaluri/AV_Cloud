@@ -3,10 +3,10 @@ import Table from "./common/table";
 
 class PastPlansTable extends Component {
   columns = [
-    { path: "startDate", label: "Start Date" },
-    { path: "endDate", label: "End Date" },
+    { path: "startdate", label: "Start Date" },
+    { path: "enddate", label: "End Date" },
     { path: "amount", label: "Amount" },
-    { path: "paymentType", label: "Payment Type" },
+    { path: "paymenttype", label: "Payment Type" },
   ];
 
   // pastPlans = [

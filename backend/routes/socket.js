@@ -9,8 +9,8 @@ router.post("/avStatusUpdate", async (req, res) => {
   adminSockets.forEach((socket) => {
     console.log("Emitting");
     socket.emit("avStatusUpdated", {
-      number: req.body.number,
-      status: req.body.status,
+      carnumber: req.body.carnumber,
+      state: req.body.state,
     });
   });
   console.log("OUT OF FOR");
@@ -20,7 +20,7 @@ router.post("/avStatusUpdate", async (req, res) => {
 // added
 router.post("/avVehicleUpdate", async (req, res) => {
   const userSockets = SocketHandler.getSocketsOfUsers();
-  
+
   userSockets.forEach((socket) => {
     console.log("Emitting1");
     socket.emit("avVehicleUpdate", {

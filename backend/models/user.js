@@ -4,7 +4,7 @@ const config = require("config");
 const _ = require("lodash");
 
 const http = require("../services/httpService");
-const { param } = require("../routes/users");
+const dbURL = config.get("dbEndpoint") + "/user";
 
 const userArray = [
   {
@@ -28,30 +28,32 @@ const userArray = [
 ];
 
 class User {
-  static findByEmail(email) {
-    return http.get("http://35.225.37.119:8080/user/search?", {
+  static async findByEmail(email) {
+    const { data: user } = await http.get(dbURL + "/search?", {
       params: {
         email: email,
       },
     });
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log("In 'findByEmail()', EMAIL: ", email);
-        const userIndex = _.findIndex(userArray, function (u) {
-          return u.email == email;
-        });
-        if (userIndex >= 0) resolve(userArray[userIndex]);
-        resolve(false);
-      }, 300);
-    });
+    return user[0];
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     console.log("In 'findByEmail()', EMAIL: ", email);
+    //     const userIndex = _.findIndex(userArray, function (u) {
+    //       return u.email == email;
+    //     });
+    //     if (userIndex >= 0) resolve(userArray[userIndex]);
+    //     resolve(false);
+    //   }, 300);
+    // });
   }
 
-  static addNew(name, email, password) {
-    return http.post("http://35.225.37.119:8080/user/add", {
+  static async addNew(name, email, password) {
+    const { data: user } = await http.post(dbURL + "/add", {
       name: name,
       email: email,
       userpassword: password,
     });
+    return user[0];
     // return new Promise((resolve) => {
     //   setTimeout(() => {
     //     console.log(
@@ -75,20 +77,24 @@ class User {
     // });
   }
 
-  static getCount() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(300);
-      }, 300);
-    });
+  static async getCount() {
+    const { data: count } = await http.get(dbURL + "/numberOfAVUsers");
+    console.log("UserCount: ", count);
+    return count;
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(300);
+    //   }, 300);
+    // });
   }
 
-  static generateAuthToken(name, email, isAdmin) {
+  static generateAuthToken(name, email, isadmin) {
+    const isAdmin = isadmin == "true" ? true : false;
     const token = jwt.sign(
       {
         name: name,
         email: email,
-        isAdmin: isAdmin,
+        isadmin: isAdmin,
       },
       config.get("jwtPrivateKey")
     );

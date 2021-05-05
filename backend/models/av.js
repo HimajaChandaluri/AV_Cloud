@@ -1,3 +1,7 @@
+const http = require("../services/httpService");
+const config = require("config");
+const dbURL = config.get("dbEndpoint") + "/vehicle";
+
 const avData = [
   {
     number: "19 AB 8903",
@@ -27,12 +31,15 @@ const avData1 = [
 ];
 
 class AV {
-  static getCount() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(400);
-      }, 300);
-    });
+  static async getCount() {
+    const { data: count } = await http.get(dbURL + "/numberOfConnectedAVs");
+    console.log("AVCount: ", count);
+    return count;
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(400);
+    //   }, 300);
+    // });
   }
 
   static getStatesAndNumbers() {
@@ -47,12 +54,14 @@ class AV {
     });
   }
 
-  static getListOfConnectedAVs() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(avData);
-      }, 300);
-    });
+  static async getListOfConnectedAVs() {
+    const { data: avList } = await http.get(dbURL + "/list/");
+    return avList;
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(avData);
+    //   }, 300);
+    // });
   }
 
   // added

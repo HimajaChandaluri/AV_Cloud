@@ -19,10 +19,10 @@ class CurrentPlan extends Component {
         {currentPlan &&
           currentPlan.length > 0 &&
           currentPlan.map((plan) => (
-            <React.Fragment key={plan.startDate + plan.endDate}>
+            <React.Fragment key={plan.startdate + plan.enddate}>
               <p>
-                <strong>Current Cycle: </strong> {plan.startDate} -{" "}
-                {plan.endDate}
+                <strong>Current Cycle: </strong> {plan.startdate} -{" "}
+                {plan.enddate}
               </p>
               <p>
                 <strong>Amount: </strong>
@@ -30,7 +30,7 @@ class CurrentPlan extends Component {
               </p>
               <p>
                 <strong>Payment Type: </strong>
-                {plan.paymentType}
+                {plan.paymenttype}
               </p>
             </React.Fragment>
           ))}

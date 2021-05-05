@@ -17,7 +17,7 @@ router.get("/me", auth, async (req, res) => {
   //   _.pick(user.data, "id", "name", "username")
   // );
   // res.send(_.pick(user.data, "id", "name", "username"));
-  res.send(_.pick(user, "_id", "name", "email", "isAdmin"));
+  res.send(_.pick(user, "_id", "name", "email", "isadmin"));
 });
 
 router.get("/plan", auth, async (req, res) => {
@@ -60,21 +60,29 @@ router.post("/plan", auth, async (req, res) => {
 
 // added
 router.post("/myVehicles", auth, async (req, res) => {
-  console.log("req.body: ", _.pick(req.body, ["vId", "vColor", "vMake", "vModel", "vMileage", "vPspace"]));
+  console.log(
+    "req.body: ",
+    _.pick(req.body, [
+      "vId",
+      "vColor",
+      "vMake",
+      "vModel",
+      "vMileage",
+      "vPspace",
+    ])
+  );
 
   let user = await VehicleList.getVehicles(req.user.email);
-  console.log("THIS IS ADDED LOG: " , user);
+  console.log("THIS IS ADDED LOG: ", user);
 
   const task_names = user.map(function (task) {
-    return task.vId; 
-});
+    return task.vId;
+  });
 
   var n = task_names.includes(req.body.vId);
 
-
   if (n) return res.status(400).send("ID already exists");
 
-  
   const plan = await VehicleList.addVehicle({
     email: req.user.email,
     ..._.pick(req.body, [
@@ -90,19 +98,22 @@ router.post("/myVehicles", auth, async (req, res) => {
 });
 
 router.post("/scheduleRide", auth, async (req, res) => {
-  console.log("req.body: ", _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]));
-  
+  console.log(
+    "req.body: ",
+    _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"])
+  );
+
   let user = await VehicleList.getVehicles(req.user.email);
-  console.log("THIS IS ADDED LOG: " , user);
+  console.log("THIS IS ADDED LOG: ", user);
 
   const task_names = user.map(function (task) {
-    return task.vId; 
-});
-  console.log("THIS IS ADDED: " , task_names);
+    return task.vId;
+  });
+  console.log("THIS IS ADDED: ", task_names);
   var n = task_names.includes(req.body.vId);
 
   if (!n) return res.status(400).send("Vehicle ID Dosent Exist");
-  
+
   const plan = await VehicleList.scheduleRide({
     email: req.user.email,
     ..._.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]),
@@ -128,7 +139,7 @@ router.post("/", async (req, res) => {
   if (result.error)
     return res.status(400).send(result.error.details[0].message);
 
-  let { data: user } = await User.findByEmail(req.body.email);
+  let user = await User.findByEmail(req.body.email);
   // console.log("IF USER EXISTS: ", user, " Leng: ", user.length);
   if (user.length > 0) return res.status(400).send("Email already exists");
 
@@ -138,19 +149,17 @@ router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const encPassword = await bcrypt.hash(password, salt);
 
-  const { data: userArr } = await User.addNew(name, email, encPassword);
-  const userObj = userArr[0];
+  user = await User.addNew(name, email, encPassword);
   // console.log("USER: ", userObj);
-  res.send(userObj);
 
-  const { isAdmin } = userObj;
-  const token = User.generateAuthToken(name, email, isAdmin);
+  const { isadmin } = user;
+  const token = User.generateAuthToken(name, email, isadmin);
 
   console.log("Sending response...", token);
   res
     .header("x-auth-token", token)
     .header("access-control-expose-headers", "x-auth-token")
-    .send(_.pick(userObj, ["name", "email"]));
+    .send(_.pick(user, ["name", "email"]));
 });
 
 module.exports = router;

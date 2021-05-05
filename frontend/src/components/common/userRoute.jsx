@@ -11,13 +11,13 @@ const UserRoute = ({ path, component: Component, render, ...rest }) => {
       {...rest}
       render={(props) => {
         if (user) {
-          if (!user.isAdmin) {
+          if (!user.isadmin) {
             return Component ? (
               <Component {...props}></Component>
             ) : (
               render(props)
             );
-          } else if (user.isAdmin) return <h1>Forbidden</h1>;
+          } else if (user.isadmin) return <h1>Forbidden</h1>;
         } else {
           return (
             <Redirect

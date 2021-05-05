@@ -13,20 +13,20 @@ class SocketHandler {
     const adminSocketsArray = [];
     sockets.forEach((socket) => {
       const user = jwt.verify(socket.jwtToken, config.get("jwtPrivateKey"));
-      if (user.isAdmin) {
+      if (user.isadmin) {
         console.log("USER BEING RETURNED: ", user.email);
         adminSocketsArray.push(socket.socketRef);
       }
     });
     return adminSocketsArray;
   }
-  
+
   // added
   static getSocketsOfUsers() {
     const SocketsArray = [];
     sockets.forEach((socket) => {
       const user = jwt.verify(socket.jwtToken, config.get("jwtPrivateKey"));
-      if (!(user.isAdmin)) {
+      if (!user.isadmin) {
         console.log("USER BEING RETURNED: ", user.email);
         SocketsArray.push(socket.socketRef);
         console.log("MADE IT TO SOCKET FUNCTION ");

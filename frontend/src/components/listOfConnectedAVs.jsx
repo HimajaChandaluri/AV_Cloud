@@ -7,8 +7,8 @@ class ListOfConnectedAVs extends Component {
   state = {};
 
   columns = [
-    { path: "number", label: "AV Number" },
-    { path: "status", label: "AV Status" },
+    { path: "carnumber", label: "AV Number" },
+    { path: "state", label: "AV State" },
   ];
 
   render() {
