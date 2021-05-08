@@ -11,7 +11,7 @@ class MyPlan extends Component {
 
   async componentDidMount() {
     const { data: planDetails } = await getSubscriptionData();
-    // console.log("DATA: ", planDetails);
+    console.log("DATA: ", planDetails);
     this.setState({
       futurePlans: planDetails.future,
       currentPlan: planDetails.current,

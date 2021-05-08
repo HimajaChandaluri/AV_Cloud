@@ -22,8 +22,8 @@ class FuturePlan extends Component {
                 }}
               ></div>
               <p>
-                <strong>Future Cycle: </strong> {plan.startDate} -{" "}
-                {plan.endDate}
+                <strong>Future Cycle: </strong> {plan.startdate} -{" "}
+                {plan.enddate}
               </p>
               <p>
                 <strong>Amount: </strong>
@@ -31,7 +31,7 @@ class FuturePlan extends Component {
               </p>
               <p>
                 <strong>Payment Type: </strong>
-                {plan.paymentType}
+                {plan.paymenttype}
               </p>
             </React.Fragment>
           ))}

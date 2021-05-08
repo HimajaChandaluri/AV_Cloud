@@ -47,7 +47,7 @@ class Register extends Form {
         </div>
       );
     } else {
-      if (user && user.isAdmin) {
+      if (user && user.isadmin) {
         return (
           <Redirect
             to={{

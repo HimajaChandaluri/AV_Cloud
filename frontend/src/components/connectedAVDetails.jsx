@@ -55,10 +55,12 @@ class ConnectedAVDetails extends Component {
   reRenderAVList = (data) => {
     const avStatusList = this.state.avStatusList;
     _.remove(avStatusList, (avStatus) => {
-      return avStatus.number == data.number;
+      return avStatus.carnumber == data.carnumber;
     });
     console.log("SOCKET INCOMING DATA: ", data);
-    avStatusList.push(data);
+    console.log("AVStatusList: ", avStatusList);
+    avStatusList.unshift(data);
+    console.log("AVStatusList: ", avStatusList);
     this.setState({ avStatusList });
     console.log("Populating count data");
     this.populateAVStatusAndCountData();

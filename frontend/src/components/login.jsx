@@ -47,7 +47,7 @@ class LoginForm extends Form {
       );
     } else {
       console.log("GOT USER");
-      if (user && user.isAdmin) {
+      if (user && user.isadmin) {
         return (
           <Redirect
             to={{

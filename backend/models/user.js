@@ -4,6 +4,7 @@ const config = require("config");
 const _ = require("lodash");
 
 const http = require("../services/httpService");
+const dbURL = config.get("dbEndpoint") + "/user";
 
 const userArray = [
   {
@@ -12,12 +13,12 @@ const userArray = [
     password: "$2b$10$2nqIaxdFY9s57nrrMjEM2.5gD.KQ3NF7/wU7taPNAC.lVf7bZbbYS",
     isAdmin: true,
   },
-  {
-    name: "Himaja",
-    email: "himaja.chandaluri@gmail.com",
-    password: "$2b$10$NP3F7.ZCmXTMAD7fL99jPuQCUTBogS6U5vzLrKyn4yE8x/h/nJ4bS",
-    isAdmin: false,
-  },
+  // {
+  //   name: "Himaja",
+  //   email: "himaja.chandaluri@gmail.com",
+  //   password: "$2b$10$NP3F7.ZCmXTMAD7fL99jPuQCUTBogS6U5vzLrKyn4yE8x/h/nJ4bS",
+  //   isAdmin: false,
+  // },
   {
     name: "admin",
     email: "admin1@admin.com",
@@ -27,58 +28,73 @@ const userArray = [
 ];
 
 class User {
-  static findByEmail(email) {
-    // return http.get("https://jsonplaceholder.typicode.com/users/1");
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log("In 'findByEmail()', EMAIL: ", email);
-        const userIndex = _.findIndex(userArray, function (u) {
-          return u.email == email;
-        });
-        if (userIndex >= 0) resolve(userArray[userIndex]);
-        resolve(false);
-      }, 300);
+  static async findByEmail(email) {
+    const { data: user } = await http.get(dbURL + "/search?", {
+      params: {
+        email: email,
+      },
     });
+    return user[0];
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     console.log("In 'findByEmail()', EMAIL: ", email);
+    //     const userIndex = _.findIndex(userArray, function (u) {
+    //       return u.email == email;
+    //     });
+    //     if (userIndex >= 0) resolve(userArray[userIndex]);
+    //     resolve(false);
+    //   }, 300);
+    // });
   }
 
-  static addNew(name, email, password) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log(
-          "In 'addNew()', NAME: ",
-          name,
-          ", EMAIL: ",
-          email,
-          ", PASS: ",
-          password
-        );
-        const user = {
-          name: name,
-          email: email,
-          password: password,
-          isAdmin: false,
-        };
-        userArray.push(user);
-        console.log("PUSHED: ", userArray);
-        resolve(user);
-      }, 300);
+  static async addNew(name, email, password) {
+    const { data: user } = await http.post(dbURL + "/add", {
+      name: name,
+      email: email,
+      userpassword: password,
     });
+    return user[0];
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     console.log(
+    //       "In 'addNew()', NAME: ",
+    //       name,
+    //       ", EMAIL: ",
+    //       email,
+    //       ", PASS: ",
+    //       password
+    //     );
+    //     const user = {
+    //       name: name,
+    //       email: email,
+    //       password: password,
+    //       isAdmin: false,
+    //     };
+    //     userArray.push(user);
+    //     console.log("PUSHED: ", userArray);
+    //     resolve(user);
+    //   }, 300);
+    // });
   }
 
-  static getCount() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(300);
-      }, 300);
-    });
+  static async getCount() {
+    const { data: count } = await http.get(dbURL + "/numberOfAVUsers");
+    console.log("UserCount: ", count);
+    return count;
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(300);
+    //   }, 300);
+    // });
   }
 
-  static generateAuthToken(name, email, isAdmin) {
+  static generateAuthToken(name, email, isadmin) {
+    const isAdmin = isadmin == "true" ? true : false;
     const token = jwt.sign(
       {
         name: name,
         email: email,
-        isAdmin: isAdmin,
+        isadmin: isAdmin,
       },
       config.get("jwtPrivateKey")
     );

@@ -10,7 +10,7 @@ const AdminRoute = ({ path, component: Component, render, ...rest }) => {
       path={path}
       {...rest}
       render={(props) => {
-        if (user && user.isAdmin)
+        if (user && user.isadmin)
           return Component ? <Component {...props}></Component> : render(props);
         return (
           <Redirect
