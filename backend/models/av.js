@@ -42,16 +42,18 @@ class AV {
     // });
   }
 
-  static getStatesAndNumbers() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const avStates = [
-          { state: "active", count: 350 },
-          { state: "inactive", count: 50 },
-        ];
-        resolve(avStates);
-      }, 300);
-    });
+  static async getStatesAndNumbers() {
+    const { data: avStates } = await http.get(dbURL + "/status");
+    return avStates;
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     const avStates = [
+    //       { state: "active", count: 350 },
+    //       { state: "inactive", count: 50 },
+    //     ];
+    //     resolve(avStates);
+    //   }, 300);
+    // });
   }
 
   static async getListOfConnectedAVs() {
