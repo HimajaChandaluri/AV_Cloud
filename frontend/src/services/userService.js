@@ -40,6 +40,12 @@ export function addVehicle(vehicleData) {
     vPspace: vehicleData.vPspace,
   });
 }
+//added
+export function deleteVehicle(vehicleData) {
+  return http.delete(apiEndpoint + "/deleteVehicles" , {
+    vId: vehicleData.vId,
+  });
+}
 
 export function getVehicles() {
   return http.get(apiEndpoint + "/myVehicles");

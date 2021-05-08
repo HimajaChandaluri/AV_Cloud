@@ -122,6 +122,14 @@ router.get("/myRides", auth, async (req, res) => {
   res.send(plan);
 });
 
+// added
+router.delete("/deleteVehicles", auth, async (req, res) => {
+  console.log("req" , req);
+  const plan = await VehicleList.deleteVehicle(req.body.vId);
+  console.log("PLAN2:", plan);
+  res.send(plan);
+});
+
 router.post("/", async (req, res) => {
   console.log("req.body: ", _.pick(req.body, ["name", "email", "password"]));
   const result = User.validate(_.pick(req.body, ["name", "email", "password"]));

@@ -17,6 +17,7 @@ import VehicleList from "./components/vehicleList";
 import AddVehicle from "./components/addVehicle";
 import SensorInfo from "./components/sensorInfo";
 import MyRides from "./components/myRides";
+import DeleteVehicle from "./components/deleteVehicle";
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,6 +41,7 @@ class App extends Component {
             <UserRoute path="/myVehicles" component={VehicleList}></UserRoute>
             <UserRoute path="/sensorinfo" component={SensorInfo}></UserRoute>
             <UserRoute path="/myRides" component={MyRides}></UserRoute>
+            <UserRoute path="/deleteVehicle" component={DeleteVehicle}></UserRoute>
             
             <AdminRoute
               path="/dashboard"

@@ -92,6 +92,33 @@ const scheduleRideArray = [
           }, 300);
         });
       }
+      static deleteVehicle(vehicle) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+
+            console.log("In 'getMyVehicles()', EMAIL: ", vehicle);
+
+          //   const task_names = userVehicleArray.map(function (task) {
+          //     return task.vId; 
+          // });
+
+            const t1 = userVehicleArray.filter(function (task) {
+              return task.vId == vehicle; 
+            });
+
+            console.log("Popped: ", t1);
+
+            //var n = task_names.includes(vehicle.vId);
+            // if(n)
+            // {
+            //   delete userVehicleArray[vehicle.vId];
+            // }
+            //userVehicleArray.push(vehicleData);
+            console.log("Popped: ", userVehicleArray);
+            resolve(userVehicleArray);
+          }, 300);
+        });
+      }
 
       static scheduleRide(ride) {
         return new Promise((resolve) => {

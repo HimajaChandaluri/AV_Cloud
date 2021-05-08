@@ -63,11 +63,19 @@ class VehicleList extends Component {
                             pathname: "/mySchedule",
                         }}
                     >Schedule Ride</Link>
+                      <Link
+                        className="btn btn-info"
+                        to={{
+                            pathname: "/deleteVehicle",
+                        }}
+                    >Delete Vehicle</Link>
+                    
                 </div>
                 
                 <p></p>
-                <Table data={vehicles} columns={this.columns} keyAtt="vId" ></Table>
-                
+                <div>
+                    <Table data={vehicles} columns={this.columns} keyAtt="vId"></Table>
+                </div>
             </React.Fragment>
         );
     }
