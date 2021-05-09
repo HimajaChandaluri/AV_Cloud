@@ -141,7 +141,7 @@ router.post("/", async (req, res) => {
 
   let user = await User.findByEmail(req.body.email);
   // console.log("IF USER EXISTS: ", user, " Leng: ", user.length);
-  if (user.length > 0) return res.status(400).send("Email already exists");
+  if (user) return res.status(400).send("Email already exists");
 
   const { name, email, password } = req.body;
 
