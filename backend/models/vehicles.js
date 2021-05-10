@@ -177,19 +177,33 @@ class VehicleList {
   static async scheduleRide(ride) {
 
     console.log("INSIDE VEEHICLE1", ride);
-    const { data: vId } = await http.get(dbURL + "/search?", {
+    // const { data: vId } = await http.get(dbURL + "/search?" , {
+    //   params: {
+    //     email: ride.email,
+    //   },
+    // });
+    const vId = await http.get(dbURL + "/search?" , {
       params: {
-        vid: ride.vId,
+        email: ride.email,
       },
     });
-    console.log("ScheduleRide:", {vId});
+    const vId2 = await http.get(dbURL + "/search?email=" + ride.email + "&&vid=" + ride.vId);
+    console.log(dbURL + "/search?email=" + ride.email + "&&vid=" + ride.vId)
+    // const vId1 = {
 
-    if (vId.length == 0)
-    {
-      console.log("No vid");
-      return 400;
-    }
-    else{
+    // }
+    //console.log("ScheduleRide:", vId);
+
+    // if (vId.length == 0)
+    // {
+    //   console.log("No vid");
+    //   return 400;
+    // }
+    // else 
+    console.log("EMAIL1", vId2);
+    console.log("EMAIL2", ride.email);
+
+    if (vId2.data.length != 0){
       console.log("vid exists");
       const { status: rideData } = await http.post(dbURL1 + "/add", {
             vid: ride.vId,
@@ -204,6 +218,10 @@ class VehicleList {
       } else {
           return 200;
       }
+    }
+    else{
+      console.log("No vid");
+      return 400;
     }
     // const { status: rideData } = await http.post(dbURL1 + "/add", {
     //         vid: ride.vId,

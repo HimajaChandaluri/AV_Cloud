@@ -71,31 +71,60 @@ class SensorInfo extends Component {
           Additional Sensor Information
         </h1>
         <div
+          className="dropdown-divider"
+          style={{
+            marginTop: "30px",
+            marginBottom: "30px",
+            borderBlockColor: "#BEE5F0",
+          }}
+        ></div>
+        <div
           class="sensor"
           style={{
             marginBottom: "50px",
             marginTop: "50px",
-            textAlign: "center",
+            textAlign: "left",
           }}
-        >
+          ><h2
+          style={{
+            marginBottom: "50px",
+            marginTop: "50px",
+            marginLeft: "200px",
+          }}
+          >Tailight Status: {this.state.tailight}
+          </h2>
+          <div
+            className="dropdown-divider"
+            style={{
+              marginTop: "30px",
+              marginBottom: "30px",
+              borderBlockColor: "#BEE5F0",
+            }}
+          ></div>
           <h2
             style={{
-              marginBottom: "100px",
-              marginTop: "100px",
+              marginBottom: "50px",
+              marginTop: "50px",
+              marginLeft: "200px",
+              textAlign: "left",
             }}
-          >
-            Tailight Status: {this.state.tailight}
+          >Headlight Status: {this.state.headlight}
           </h2>
-          <h2
+          <div
+            className="dropdown-divider"
             style={{
-              marginBottom: "100px",
-              marginTop: "100px",
-              textAlign: "center",
+              marginTop: "30px",
+              marginBottom: "30px",
+              borderBlockColor: "#BEE5F0",
             }}
-          >
-            Headlight Status: {this.state.headlight}
-          </h2>
-          <h2>Temperature Status: {this.state.temperature}</h2>
+          ></div>
+          <h2  
+            style={{
+              marginBottom: "50px",
+              marginTop: "50px",
+              marginLeft: "200px",
+              textAlign: "left",
+            }}>Temperature Status: {this.state.temperature}</h2>
         </div>
         {/* <Table data={this.state.data} columns={this.columns} keyAtt="headlight" ></Table> */}
       </React.Fragment>
