@@ -18,9 +18,15 @@ import AddVehicle from "./components/addVehicle";
 import SensorInfo from "./components/sensorInfo";
 import MyRides from "./components/myRides";
 import DeleteVehicle from "./components/deleteVehicle";
-
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { socketUrl } from "./config.json";
+import { getJwt } from "./services/authService";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { io } from "socket.io-client";
+export const socket = io(socketUrl, {
+  query: {
+    jwtToken: getJwt(),
+  },
+});
 
 class App extends Component {
   state = {};
@@ -37,12 +43,18 @@ class App extends Component {
             <UserRoute path="/myPlan" component={MyPlan}></UserRoute>
             <UserRoute path="/myStatus" component={UserDashboard}></UserRoute>
             <UserRoute path="/mySchedule" component={ScheduleRide}></UserRoute>
-            <UserRoute path="/myVehicles/addVehicle" component={AddVehicle}></UserRoute>
+            <UserRoute
+              path="/myVehicles/addVehicle"
+              component={AddVehicle}
+            ></UserRoute>
             <UserRoute path="/myVehicles" component={VehicleList}></UserRoute>
             <UserRoute path="/sensorinfo" component={SensorInfo}></UserRoute>
             <UserRoute path="/myRides" component={MyRides}></UserRoute>
-            <UserRoute path="/deleteVehicle" component={DeleteVehicle}></UserRoute>
-            
+            <UserRoute
+              path="/deleteVehicle"
+              component={DeleteVehicle}
+            ></UserRoute>
+
             <AdminRoute
               path="/dashboard"
               component={AdminDashboard}

@@ -6,13 +6,14 @@ import ListOfConnectedAVs from "./listOfConnectedAVs";
 
 import { getAVStateAndCount, getListOfAVs } from "../services/avService";
 import { getJwt } from "../services/authService";
+import { socket } from "../App";
 
-import { io } from "socket.io-client";
-const socket = io("http://localhost:3900", {
-  query: {
-    jwtToken: getJwt(),
-  },
-});
+// import { io } from "socket.io-client";
+// const socket = io("http://localhost:3900", {
+//   query: {
+//     jwtToken: getJwt(),
+//   },
+// });
 
 class ConnectedAVDetails extends Component {
   state = {
@@ -55,7 +56,7 @@ class ConnectedAVDetails extends Component {
   reRenderAVList = (data) => {
     const avStatusList = this.state.avStatusList;
     _.remove(avStatusList, (avStatus) => {
-      return avStatus.carnumber == data.carnumber;
+      return avStatus.vid == data.vid;
     });
     console.log("SOCKET INCOMING DATA: ", data);
     console.log("AVStatusList: ", avStatusList);
