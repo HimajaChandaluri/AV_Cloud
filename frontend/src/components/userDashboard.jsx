@@ -29,13 +29,14 @@ if(user != null)
 
 class UserDashboard extends Component {
     state = {
-        avStatus: []
+        currentState: "", serviceState: "", currentLocation: "", roadService: "",
     };
 
     componentDidMount() {
         this.populateAVStatusListData();
         console.log("MADE IT TO SOCKET");
-        socket.on("avStateUpdated", this.reRenderAV);
+        socket.on("activeVehicleData", this.reRenderAV);
+        socket.on("activeVehicleLocation", this.reRenderAV1);
         console.log("MADE IT PAS SOCKET");
       }
     
@@ -56,16 +57,15 @@ class UserDashboard extends Component {
       }
     
     reRenderAV = (data) => {
-        const avStates = this.state.avStatus;
-        console.log("THIS IS AV STATTES: ", avStates);
-        // _.remove(avStates, (avStatus) => {
-        //     return avStatus.number == data.number;
-        //   });
         console.log("SOCKET INCOMING DATA: ", data);
-        avStates.push(data);
-        this.setState({ avStates });
+        this.setState({ currentState: data.currentState, serviceState: data.serviceState, roadService: data.roadService});
         console.log("Populating count data");
-        this.populateAVStatusListData();
+      };
+
+    reRenderAV1 = (data) => {
+        console.log("SOCKET INCOMING DATA: ", data);
+        this.setState({ currentLocation: data.currentLocation});
+        console.log("Populating count data");
       };
     
     render() {
@@ -82,16 +82,19 @@ class UserDashboard extends Component {
                 >Additional Sensor Info</Link>
         <CurrentState
           style={{ marginTop: "30px" }}
-          data={this.state.avStatus}
+          data={this.state.currentState}
         ></CurrentState>
         <ServiceState
           style={{ marginTop: "35px" }}
+          data={this.state.serviceState}
         ></ServiceState>
         <CurrentLocation
           style={{ marginTop: "35px" }}
+          data={this.state.currentLocation}
         ></CurrentLocation>
         <RoadService
           style={{ marginTop: "35px" }}
+          data={this.state.roadService}
         ></RoadService>
         </React.Fragment>
       );

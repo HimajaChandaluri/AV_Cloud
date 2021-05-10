@@ -23,8 +23,13 @@ class RoadService extends Component {
           }}
         ></div>
         <p className="text-center" style={{ fontSize: "50px" }}>
-          {this.state.rS}
+          {this.props.data}
         </p>
+        {!this.props.data && this.props.data.length === 0 && (
+          <p className="text-center" style={{ fontSize: "50px" }}>
+          No Service
+          </p>
+        )}
       </React.Fragment>
     );
   }

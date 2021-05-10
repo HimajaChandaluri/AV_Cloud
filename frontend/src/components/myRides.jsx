@@ -15,16 +15,15 @@ class MyRides extends Component {
     state = {vId: "", Origin: "", vPspace: "", Destination: "",};
 
     columns = [
-        { path: "vId", label: "Vehicle Id" },
-        { path: "Origin", label: "Origin Location" },
-        { path: "Passengers", label: "Vehicle Passenger Space" },
-        { path: "Destination", label: "Destintaion Location" },
-        { path: "Status", label: "Status" },
+        { path: "vid", label: "Vehicle Id" },
+        { path: "origin", label: "Origin Location" },
+        { path: "passengers", label: "Vehicle Passenger Space" },
+        { path: "destination", label: "Destintaion Location" },
       ];
 
       async componentDidMount() {
-        const { data: vehicles } = await getRides();
-        console.log("Made it: ", vehicles);
+        const { data: rides } = await getRides();
+        console.log("Made it: ", rides);
         const data1 = [];
         // vechiles.map((item) => {
         //     data1.push({g
@@ -33,13 +32,13 @@ class MyRides extends Component {
         //       vMake: item.vMake,
         //     });
         // });
-        this.setState({vehicles});
-        console.log(this.state.vehicles);
+        this.setState({rides});
+        console.log(this.state.rides);
     }
 
     render() {
 
-        const {vehicles} = this.state;
+        const {rides} = this.state;
         // console.log(y);
         return (
             
@@ -55,7 +54,7 @@ class MyRides extends Component {
                     }}
                 >Schedule a Ride</Link>
                 <p></p>
-                <Table data={vehicles} columns={this.columns} keyAtt="vId" ></Table>
+                <Table data={rides} columns={this.columns} keyAtt="vId" ></Table>
                 
             </React.Fragment>
         );

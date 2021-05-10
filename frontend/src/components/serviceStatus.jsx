@@ -23,8 +23,13 @@ class ServiceState extends Component {
           }}
         ></div>
         <p className="text-center" style={{ fontSize: "50px" }}>
-          {this.state.service}
+          {this.props.data}
         </p>
+        {!this.props.data && this.props.data.length === 0 && (
+           <p className="text-center" style={{ fontSize: "50px" }}>
+           Inactive
+           </p>
+        )}
       </React.Fragment>
     );
   }

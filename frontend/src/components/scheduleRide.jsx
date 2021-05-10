@@ -8,15 +8,17 @@ import { scheduleRide } from "../services/userService";
 
 class ScheduleRide extends Form {
   state = {
-    data: { vId: "", Origin: "", Passengers: "", Destination: "" },
+    data: { vId: "", Origin: "", Passengers: "", Destination: "", },
     errors: {},
   };
 
   schema = {
+
     vId: Joi.string().required().label("Vehicle ID"),
-    Origin: Joi.string().required().label("Origin"),
-    Passengers: Joi.string().required().label("Passengers"),
-    Destination: Joi.string().required().label("Destination"),
+    Origin: Joi.string().regex(/^[a-zA-Z ]+$/).required().label("Origin"),
+    Passengers:  Joi.number().integer().min(0).max(8).required().label("Vehicle Passenger Space"),
+    // Destination: Joi.string().required().label("Destination"),
+    Destination: Joi.string().regex(RegExp(/^[a-zA-Z ]+$/)).required().label("Destination"),
   };
 
   doSubmit = async () => {
@@ -41,6 +43,7 @@ class ScheduleRide extends Form {
         console.log("CAUGHT HERE");
         const errors = this.state.errors;
         errors.vId = ex.response.data;
+        errors.message = "TEST";
         this.setState({ errors });
       }
     }

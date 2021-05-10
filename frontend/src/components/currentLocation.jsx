@@ -23,8 +23,13 @@ class CurrentLocation extends Component {
           }}
         ></div>
         <p className="text-center" style={{ fontSize: "50px" }}>
-          {this.state.cL}
+          {this.props.data}
         </p>
+        {!this.props.data && this.props.data.length === 0 && (
+           <p className="text-center" style={{ fontSize: "50px" }}>
+           Unknown
+           </p>
+        )}
       </React.Fragment>
     );
   }

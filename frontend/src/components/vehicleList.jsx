@@ -13,15 +13,19 @@ if (user != null) {
 }
 
 class VehicleList extends Component {
-    state = {vId: "", vColor: "", vMake: "", vModel: "", vMileage: "", vPspace: ""};
+    state = {vId: "", vColor: "", vMake: "", vModel: "", vMileage: "", vPspace: "", vServiceStatus: "", vCurrentStatus: "", vLocation: "", vRoadService: ""};
 
     columns = [
-        { path: "vId", label: "Vehicle Id" },
-        { path: "vColor", label: "Vehicle Color" },
-        { path: "vMake", label: "Vehicle Make" },
-        { path: "vModel", label: "Vehicle Model" },
-        { path: "vMileage", label: "Vehicle Mileage" },
-        { path: "vPspace", label: "Vehicle Passenger Space" },
+        { path: "vid", label: "Vehicle Id" },
+        { path: "vcolor", label: "Vehicle Color" },
+        { path: "vmake", label: "Vehicle Make" },
+        { path: "vmodel", label: "Vehicle Model" },
+        { path: "vmileage", label: "Vehicle Mileage" },
+        { path: "vpassengerspace", label: "Passenger Space" },
+        { path: "vservicestatus", label: "Service Status" },
+        { path: "vcurrentstatus", label: "Current Status" },
+        { path: "location", label: "Current Location" },
+        { path: "roadservice", label: "Road Service" },
       ];
 
     async componentDidMount() {
@@ -36,7 +40,7 @@ class VehicleList extends Component {
         //     });
         // });
         this.setState({vehicles});
-        console.log(this.state.vehicles);
+        console.log("again made it", this.state.vehicles);
     }
 
     render() {
@@ -45,25 +49,25 @@ class VehicleList extends Component {
         // console.log(y);
         return (
             
-            <React.Fragment>
+            <div className="container" style={{marginLeft: "-130px"}}>
                 <div>
-                    <h1 className="text-center" style={{ marginBottom: "25px" }}>
+                    <h1 className="text-center" style={{ marginBottom: "25px", marginLeft: "300px"}}>
                         {user1 + "'s Vehicles"}</h1>
                 </div>
                 <div> 
-                    <Link
+                    <Link style={{marginRight: "20px"}}
                         className="btn btn-info"
                         to={{
                             pathname: "/myVehicles/addVehicle",
                         }}
                     >Add Vehicle</Link>
-                    <Link
+                    <Link style={{marginRight: "20px"}}
                         className="btn btn-info"
                         to={{
                             pathname: "/mySchedule",
                         }}
                     >Schedule Ride</Link>
-                      <Link
+                      <Link 
                         className="btn btn-info"
                         to={{
                             pathname: "/deleteVehicle",
@@ -74,9 +78,9 @@ class VehicleList extends Component {
                 
                 <p></p>
                 <div>
-                    <Table data={vehicles} columns={this.columns} keyAtt="vId"></Table>
+                    <Table data={vehicles} columns={this.columns} keyAtt="vId" ></Table>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 

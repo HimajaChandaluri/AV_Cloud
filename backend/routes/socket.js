@@ -9,8 +9,8 @@ router.post("/avStatusUpdate", async (req, res) => {
   adminSockets.forEach((socket) => {
     console.log("Emitting");
     socket.emit("avStatusUpdated", {
-      carnumber: req.body.carnumber,
-      state: req.body.state,
+      vid: req.body.vid,
+      vcurrentstatus: req.body.vcurrentstatus,
     });
   });
   console.log("OUT OF FOR");
@@ -18,15 +18,51 @@ router.post("/avStatusUpdate", async (req, res) => {
 });
 
 // added
-router.post("/avVehicleUpdate", async (req, res) => {
+router.post("/avCurrentServiceUpdate", async (req, res) => {
   const userSockets = SocketHandler.getSocketsOfUsers();
 
   userSockets.forEach((socket) => {
     console.log("Emitting1");
-    socket.emit("avVehicleUpdate", {
-      currentState: req.body.currentState,
+    socket.emit("activeVehicleData", {
+      currentState: req.body.vcurrentstatus,
+      serviceState: req.body.vservicestatus,
+      roadService: req.body.roadservice,
     });
-    console.log(req.body.currentState);
+    //console.log(req.body.currentState);
+    console.log(req.body);
+  });
+  console.log("OUT OF FOR1");
+  res.status(200).send();
+});
+
+// 
+router.post("/avLocationUpdate", async (req, res) => {
+  const userSockets = SocketHandler.getSocketsOfUsers();
+
+  userSockets.forEach((socket) => {
+    console.log("Emitting1");
+    socket.emit("activeVehicleLocation", {
+      currentLocation: req.body.currentLocation,
+    });
+    console.log(req.body);
+  });
+  console.log("OUT OF FOR1");
+  res.status(200).send();
+});
+
+// additional sensors
+router.post("/avSensorUpdate", async (req, res) => {
+  const userSockets = SocketHandler.getSocketsOfUsers();
+
+  userSockets.forEach((socket) => {
+    console.log("Emitting1");
+    socket.emit("activeSensorInformation", {
+      tailight: req.body.tailight,
+      headlight: req.body.headlight,
+      temperature: req.body.temperature,
+      // ..... (ADD ADDTIONAL SENSORS THAT ARE BEING RECEIVED)
+    });
+    console.log(req.body);
   });
   console.log("OUT OF FOR1");
   res.status(200).send();

@@ -64,79 +64,105 @@ router.post("/myVehicles", auth, async (req, res) => {
     "req.body: ",
     _.pick(req.body, [
       "vId",
+      "email",
       "vColor",
       "vMake",
       "vModel",
       "vMileage",
       "vPspace",
+      "vServiceStatus",
+      "vCurrentStatus",
+      "vLocation",
+      "vRoadService",
     ])
   );
 
-  let user = await VehicleList.getVehicles(req.user.email);
-  console.log("THIS IS ADDED LOG: ", user);
+  // let user = await VehicleList.getVehicles(req.user.email);
+  // console.log("THIS IS ADDED LOG: ", user);
+  // if ((user.vId === req.body.vId)) return res.status(400).send("ID already exists");
 
-  const task_names = user.map(function (task) {
-    return task.vId;
-  });
+  // const task_names = user.map(function (task) {
+  //   return task.vId;
+  // });
 
-  var n = task_names.includes(req.body.vId);
+  // var n = task_names.includes(req.body.vId);
 
-  if (n) return res.status(400).send("ID already exists");
-
+  // if (n) return res.status(400).send("ID already exists");
+  // console.log(req.body);
   const plan = await VehicleList.addVehicle({
-    email: req.user.email,
+    email: req.user.email, 
     ..._.pick(req.body, [
       "vId",
+      "email",
       "vColor",
       "vMake",
       "vModel",
       "vMileage",
       "vPspace",
+      "vServiceStatus",
+      "vCurrentStatus",
+      "vLocation",
+      "vRoadService",
     ]),
   });
+  console.log("LAN", plan)
   if (plan) res.status(200).send(plan);
 });
 
 router.post("/scheduleRide", auth, async (req, res) => {
   console.log(
     "req.body: ",
-    _.pick(req.body, ["vId", "Origin", "Passengers", "Destination"])
+    _.pick(req.body, ["vId", "Origin", "Passengers", "Destination",])
   );
 
-  let user = await VehicleList.getVehicles(req.user.email);
-  console.log("THIS IS ADDED LOG: ", user);
+  // let user = await VehicleList.getVehicles(req.user.email);
+  // console.log("THIS IS ADDED LOG: ", user);
 
-  const task_names = user.map(function (task) {
-    return task.vId;
-  });
-  console.log("THIS IS ADDED: ", task_names);
-  var n = task_names.includes(req.body.vId);
+  // const task_names = user.map(function (task) {
+  //   return task.vId;
+  // });
+  // console.log("THIS IS ADDED: ", task_names);
+  // var n = task_names.includes(req.body.vId);
 
-  if (!n) return res.status(400).send("Vehicle ID Dosent Exist");
+  // if (!n) return res.status(400).send("Vehicle ID Dosent Exist");
 
   const plan = await VehicleList.scheduleRide({
     email: req.user.email,
     ..._.pick(req.body, ["vId", "Origin", "Passengers", "Destination"]),
   });
-  if (plan) res.status(200).send(plan);
+    if (plan) {
+      res.status(200).send(plan);
+    }
+    else{
+      res.status(400).send("plan");
+    }
 });
 
 router.get("/myVehicles", auth, async (req, res) => {
   const plan = await VehicleList.getVehicles(req.user.email);
-  console.log("PLAN1:", plan);
+  console.log("inside get my vehciles:", plan);
   res.send(plan);
 });
 
 router.get("/myRides", auth, async (req, res) => {
   const plan = await VehicleList.getRides(req.user.email);
-  console.log("PLAN2:", plan);
+  console.log("inside get my rides:", plan);
   res.send(plan);
 });
 
 // added
-router.delete("/deleteVehicles", auth, async (req, res) => {
-  console.log("req" , req);
+router.post("/deleteVehicles", auth, async (req, res) => {
+  console.log(
+    "req.body1: ",
+    _.pick(req.body, [
+      "vId",
+    ]));
   const plan = await VehicleList.deleteVehicle(req.body.vId);
+  // const plan = await VehicleList.deleteVehicle({
+  //   ..._.pick(req.body, [
+  //     "vId",
+  //   ]),
+  // });
   console.log("PLAN2:", plan);
   res.send(plan);
 });
@@ -149,7 +175,7 @@ router.post("/", async (req, res) => {
 
   let user = await User.findByEmail(req.body.email);
   // console.log("IF USER EXISTS: ", user, " Leng: ", user.length);
-  if (user.length > 0) return res.status(400).send("Email already exists");
+  if (user) return res.status(400).send("Email already exists");
 
   const { name, email, password } = req.body;
 

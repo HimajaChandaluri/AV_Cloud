@@ -38,12 +38,16 @@ export function addVehicle(vehicleData) {
     vModel: vehicleData.vModel,
     vMileage: vehicleData.vMileage,
     vPspace: vehicleData.vPspace,
+    vServiceStatus : vehicleData.vServiceStatus,
+    vCurrentStatus: vehicleData.vCurrentStatus,
+    vLocation : vehicleData.vLocation,
+    vRoadService : vehicleData.vRoadService,
   });
 }
 //added
-export function deleteVehicle(vehicleData) {
-  return http.delete(apiEndpoint + "/deleteVehicles" , {
-    vId: vehicleData.vId,
+export function deleteVehicle(vehicleId) {
+  return http.post(apiEndpoint + "/deleteVehicles" , {
+    vId: vehicleId.vId,
   });
 }
 

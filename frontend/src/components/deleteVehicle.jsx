@@ -23,17 +23,17 @@ class DeleteVehicle extends Form {
 
     try{
       console.log("Submitted");
-      const { vd } = this.state.data;
+      const { vId } = this.state.data;
       // const { paymentType } = this.state.data;
-      const vehicleData = {
-        vId: this.state.data,
+      const vehicleId = {
+        vId
       };
     
       console.log(this.state.data);
       console.log("Submitted1");
-      console.log(vehicleData);
+      console.log(vehicleId);
       console.log("Submitted2");
-      await deleteVehicle(vehicleData);
+      await deleteVehicle(vehicleId);
       this.props.history.push("/myVehicles");
     }
     catch (ex) {

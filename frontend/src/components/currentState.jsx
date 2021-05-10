@@ -87,12 +87,13 @@ class CurrentState extends Component {
           }}
         ></div>
         <p className="text-center" style={{ fontSize: "50px" }}>
-        <Table
-          data={this.props.data}
-          columns={this.columns}
-          keyAtt="state"
-        ></Table>
+        {this.props.data}
         </p>
+        {!this.props.data && this.props.data.length === 0 && (
+           <p className="text-center" style={{ fontSize: "50px" }}>
+           Idle
+           </p>
+        )}
       </React.Fragment>
     );
   }
