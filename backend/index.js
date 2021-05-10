@@ -13,6 +13,19 @@ if (!config.get("jwtPrivateKey")) {
   process.exit(1);
 }
 
+const mongoose = require("mongoose");
+
+mongoose
+  .connect("mongodb+srv://admin:cmpe281@cmpe281.9y980.mongodb.net/myFirstDatabase?retryWrites=true&w=majority" , {
+    // retry to connect 
+    reconnectTries: 1,
+    // wait 5 seconds before retry
+    reconnectInterval: 5000,
+  })
+  .then(() => console.log("Connected to Database"))
+  .catch((err) => console.log("Failed to connect to Database"));
+
+
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());

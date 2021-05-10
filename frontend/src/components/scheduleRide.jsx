@@ -8,7 +8,7 @@ import { scheduleRide } from "../services/userService";
 
 class ScheduleRide extends Form {
   state = {
-    data: { vId: "", Origin: "", Passengers: "", Destination: "", },
+    data: { vId: "", Origin: "", Passengers: "", Destination: "", Date: "" },
     errors: {},
   };
 
@@ -18,19 +18,21 @@ class ScheduleRide extends Form {
     Origin: Joi.string().regex(/^[a-zA-Z ]+$/).required().label("Origin"),
     Passengers:  Joi.number().integer().min(0).max(8).required().label("Vehicle Passenger Space"),
     // Destination: Joi.string().required().label("Destination"),
+    Date: Joi.date().greater('1-1-2020'),
     Destination: Joi.string().regex(RegExp(/^[a-zA-Z ]+$/)).required().label("Destination"),
   };
 
   doSubmit = async () => {
     try {
       console.log("Submitted");
-      const { vId, Origin, Passengers, Destination } = this.state.data;
+      const { vId, Origin, Passengers, Destination, Date} = this.state.data;
       // const { paymentType } = this.state.data;
       const scheduleData = {
         vId,
         Origin,
         Passengers,
         Destination,
+        Date,
       };
       console.log(this.state.data);
       console.log("Submitted1");
@@ -73,6 +75,7 @@ class ScheduleRide extends Form {
             {this.renderInput("Origin", "Origin")}
             {this.renderInput("Passengers", "# of passengers")}
             {this.renderInput("Destination", "Destination")}
+            {this.renderInput("Date", "Date")}
             {this.renderButton("Submit")}
           </form>
         </div>

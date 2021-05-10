@@ -39,7 +39,8 @@ class UserDashboard extends Component {
     this.populateAVStatusListData();
     console.log("MADE IT TO SOCKET");
     socket.on("activeVehicleData", this.reRenderAV);
-    socket.on("activeVehicleLocation", this.reRenderAV1);
+    // socket.on("activeVehicleLocation", this.reRenderAV1);
+    socket.on("activeSensorInformation", this.reRenderAV1);
     console.log("MADE IT PAS SOCKET");
   }
 
@@ -70,7 +71,7 @@ class UserDashboard extends Component {
   };
 
   reRenderAV1 = (data) => {
-    console.log("SOCKET INCOMING DATA: ", data);
+    console.log("SOCKET INCOMING DATA1: ", data);
     this.setState({ currentLocation: data.currentLocation });
     console.log("Populating count data");
   };

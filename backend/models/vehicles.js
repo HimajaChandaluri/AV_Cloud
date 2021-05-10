@@ -200,8 +200,6 @@ class VehicleList {
     //   return 400;
     // }
     // else 
-    console.log("EMAIL1", vId2);
-    console.log("EMAIL2", ride.email);
 
     if (vId2.data.length != 0){
       console.log("vid exists");
@@ -211,6 +209,7 @@ class VehicleList {
             origin: ride.Origin,
             passengers: ride.Passengers,
             destination: ride.Destination,
+            date: ride.Date,
       });
       console.log("status2: ", rideData);
       if (rideData == 200) {

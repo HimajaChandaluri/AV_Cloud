@@ -12,13 +12,14 @@ if (user != null) {
 }
 
 class MyRides extends Component {
-    state = {vId: "", Origin: "", vPspace: "", Destination: "",};
+    state = {vId: "", Origin: "", vPspace: "", Destination: "", Date: ""};
 
     columns = [
         { path: "vid", label: "Vehicle Id" },
         { path: "origin", label: "Origin Location" },
         { path: "passengers", label: "Vehicle Passenger Space" },
         { path: "destination", label: "Destintaion Location" },
+        { path: "date", label: "Date" },
       ];
 
       async componentDidMount() {
