@@ -13,7 +13,7 @@ const NavBar = () => {
       // style={{ backgroundColor: "#6930c3" }}
     >
       <Link className="navbar-brand col-sm-3 col-md-2 mr-0" to="/">
-        Company name
+        AVCloud
       </Link>
       <button
         className="navbar-toggler"
