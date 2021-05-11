@@ -10,12 +10,25 @@ router.post("/avStatusUpdate", async (req, res) => {
     console.log("Emitting");
     socket.emit("avStatusUpdated", {
       vid: req.body.vid,
+      // email: req.body.email,
+      // vmake: req.body.vmake,
+      // vmodel: req.body.vmodel,
+      // vmileage: req.body.vmileage,
+      // roadservice: req.body.roadservice,
       vcurrentstatus: req.body.vcurrentstatus,
     });
   });
   console.log("OUT OF FOR");
   res.status(200).send();
 });
+
+// { path: "vid", label: "AV Number" },
+//     { path: "email", label: "AV Owner" },
+//     { path: "vmake", label: "AV Make" },
+//     { path: "vmodel", label: "AV Model" },
+//     { path: "vmileage", label: "AV Mileage" },
+//     { path: "roadservice", label: "Road Service" },
+//     { path: "vcurrentstatus", label: "AV State" },
 
 // added
 router.post("/avCurrentServiceUpdate", async (req, res) => {

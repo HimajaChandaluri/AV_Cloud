@@ -55,16 +55,30 @@ class ConnectedAVDetails extends Component {
 
   reRenderAVList = (data) => {
     const avStatusList = this.state.avStatusList;
-    _.remove(avStatusList, (avStatus) => {
+
+    const index = _.findIndex(avStatusList, (avStatus) => {
       return avStatus.vid == data.vid;
     });
+    // _.remove(avStatusList, (avStatus) => {
+    //   return avStatus.vid == data.vid;
+    // });
+
+    if (index > 0) {
+      const record = avStatusList[index];
+      _.remove(avStatusList, (avStatus) => {
+        return avStatus.vid == data.vid;
+      });
+      record.vcurrentstatus = data.vcurrentstatus;
+      avStatusList.unshift(record);
+    }
+    this.setState({ avStatusList });
     console.log("SOCKET INCOMING DATA: ", data);
     console.log("AVStatusList: ", avStatusList);
-    avStatusList.unshift(data);
-    console.log("AVStatusList: ", avStatusList);
-    this.setState({ avStatusList });
-    console.log("Populating count data");
-    this.populateAVStatusAndCountData();
+    // avStatusList.unshift(data);
+    // console.log("AVStatusList: ", avStatusList);
+    // this.setState({ avStatusList });
+    // console.log("Populating count data");
+    // this.populateAVStatusAndCountData();
   };
 
   render() {
