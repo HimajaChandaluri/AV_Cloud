@@ -63,7 +63,8 @@ class ConnectedAVDetails extends Component {
     //   return avStatus.vid == data.vid;
     // });
 
-    if (index > 0) {
+    console.log("INDEX: ", index);
+    if (index >= 0) {
       const record = avStatusList[index];
       _.remove(avStatusList, (avStatus) => {
         return avStatus.vid == data.vid;
