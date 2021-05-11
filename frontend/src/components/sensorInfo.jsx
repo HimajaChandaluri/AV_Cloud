@@ -38,6 +38,7 @@ class SensorInfo extends Component {
     tailight: "",
     headlight: "",
     temperature: "",
+    vid: "",
   };
 
   columns = [
@@ -60,6 +61,7 @@ class SensorInfo extends Component {
       tailight: data.tailight,
       headlight: data.headlight,
       temperature: data.temperature,
+      vid: data.vid,
     });
     console.log("SET STATE", this.state.tailight);
   };
@@ -78,6 +80,22 @@ class SensorInfo extends Component {
             borderBlockColor: "#BEE5F0",
           }}
         ></div>
+          <h2  
+            style={{
+              marginBottom: "50px",
+              marginTop: "50px",
+              marginLeft: "200px",
+              textAlign: "left",
+            }}>Vehicle License Plate: {this.state.vid}</h2>
+            <div
+            className="dropdown-divider"
+            style={{
+              marginTop: "30px",
+              marginBottom: "30px",
+              borderBlockColor: "#BEE5F0",
+            }}
+          ></div>
+
         <div
           class="sensor"
           style={{

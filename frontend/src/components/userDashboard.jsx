@@ -76,7 +76,7 @@ class UserDashboard extends Component {
       roadService: data.roadService,
       vid: data.vid,
     });
-
+    
     console.log("Populating count data");
   };
 
@@ -86,8 +86,9 @@ class UserDashboard extends Component {
             vid: data.vid, });
     const index = _.findIndex(this.state.getV, (v) => {
         
-        return (v.vid == data.vid)
+        return (v.vId == data.vId)
     })
+    console.log(index)
     this.setState({
         currentState: this.state.getV[index].currentState,
         serviceState: this.state.getV[index].serviceState,

@@ -40,13 +40,13 @@ const NavBar = () => {
             <React.Fragment>
               <ListItemNavBar
                 iconClass="fa fa-list-alt"
-                label="My Plan"
-                path="/myplan"
+                label="Dashboard"
+                path="/mystatus"
               ></ListItemNavBar>
               <ListItemNavBar
                 iconClass="fa fa-list-alt"
-                label="Dashboard"
-                path="/mystatus"
+                label="My Plan"
+                path="/myplan"
               ></ListItemNavBar>
               <ListItemNavBar
                 iconClass="fa fa-list-alt"

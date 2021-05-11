@@ -59,7 +59,7 @@ class LoginForm extends Form {
         return (
           <Redirect
             to={{
-              pathname: "/myplan",
+              pathname: "/myStatus",
             }}
           ></Redirect>
         );

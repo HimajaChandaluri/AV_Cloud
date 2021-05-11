@@ -71,9 +71,9 @@ class VehicleList {
             vmileage: vehicle.vMileage,
             vpassengerspace: vehicle.vPspace,
             vservicestatus: vehicle.vServiceStatus,
-            vcurrentstatus : vehicle.vCurrentStatus,
-            location : vehicle.vLocation,
-            roadservice : vehicle.vRoadService,
+            vcurrentstatus: vehicle.vCurrentStatus,
+            location: vehicle.vLocation,
+            roadservice: vehicle.vRoadService,
       });
       console.log("status1: ", vehicleData);
       if (vehicleData == 200) {

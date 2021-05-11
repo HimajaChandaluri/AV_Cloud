@@ -1,14 +1,23 @@
 import React, { Component } from "react";
+import { getVehicles } from "../services/userService";
 import withCardView from "./common/withCardView";
 // import { getUserCount } from "../services/userService";
+import { getSubscriptionData } from "../services/userService";
 
 class ServiceState extends Component {
-  state = {service: "Active"};
+  state = {service: "Inactive"};
 
-//   async componentDidMount() {
-//     const { data: userCount } = await getUserCount();
-//     this.setState({ userCount: userCount.count });
-//   }
+  async componentDidMount() {
+    const { data: userCount } = await getSubscriptionData();
+    // const result = userCount.filter(vservicestatus => vservicestatus);
+    console.log("R1", userCount.current);
+    if(userCount.current != 0)
+    {
+      const service = "Active"
+      this.setState({service});
+    }
+    
+  }
 
   render() {
     return (
@@ -27,7 +36,7 @@ class ServiceState extends Component {
         </p>
         {!this.props.data  && (
            <p className="text-center" style={{ fontSize: "50px" }}>
-           Inactive
+            {this.state.service}
            </p>
         )}
       </React.Fragment>

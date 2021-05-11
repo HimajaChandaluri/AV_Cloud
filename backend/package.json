@@ -23,11 +23,7 @@
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-<<<<<<< HEAD
-    "mongoose": "^5.12.7",
-=======
     "mongoose": "^5.12.8",
->>>>>>> 09c074371c67bcb1f028072a0a02a89ee6a3ac42
     "socket.io": "^4.0.1"
   },
   "devDependencies": {
