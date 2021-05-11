@@ -112,7 +112,7 @@ router.post("/myVehicles", auth, async (req, res) => {
 router.post("/scheduleRide", auth, async (req, res) => {
   console.log(
     "req.body: ",
-    _.pick(req.body, ["vId", "Origin", "Passengers", "Destination", "Date"])
+    _.pick(req.body, ["vId", "Origin", "Passengers", "Destination", "Datetime"])
   );
 
   // let user = await VehicleList.getVehicles(req.user.email);
@@ -128,7 +128,7 @@ router.post("/scheduleRide", auth, async (req, res) => {
 
   const plan = await VehicleList.scheduleRide({
     email: req.user.email,
-    ..._.pick(req.body, ["vId", "Origin", "Passengers", "Destination", "Date"]),
+    ..._.pick(req.body, ["vId", "Origin", "Passengers", "Destination", "Datetime"]),
   });
     if (plan) {
       res.status(200).send(plan);

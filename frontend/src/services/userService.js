@@ -65,7 +65,7 @@ export function scheduleRide(scheduleData) {
     Origin: scheduleData.Origin,
     Passengers: scheduleData.Passengers,
     Destination: scheduleData.Destination,
-    Date: scheduleData.Date,
+    Datetime: scheduleData.Datetime,
   });
 }
 

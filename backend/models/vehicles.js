@@ -209,7 +209,7 @@ class VehicleList {
             origin: ride.Origin,
             passengers: ride.Passengers,
             destination: ride.Destination,
-            date: ride.Date,
+            vdatetime: ride.Datetime,
       });
       console.log("status2: ", rideData);
       if (rideData == 200) {

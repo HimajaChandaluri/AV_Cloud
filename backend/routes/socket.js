@@ -27,6 +27,7 @@ router.post("/avCurrentServiceUpdate", async (req, res) => {
       currentState: req.body.vcurrentstatus,
       serviceState: req.body.vservicestatus,
       roadService: req.body.roadservice,
+      vid: req.body.vid,
     });
     //console.log(req.body.currentState);
     console.log(req.body);
@@ -34,21 +35,6 @@ router.post("/avCurrentServiceUpdate", async (req, res) => {
   console.log("OUT OF FOR1");
   res.status(200).send();
 });
-
-// 
-// router.post("/avLocationUpdate", async (req, res) => {
-//   const userSockets = SocketHandler.getSocketsOfUsers();
-
-//   userSockets.forEach((socket) => {
-//     console.log("Emitting1");
-//     socket.emit("activeVehicleLocation", {
-//       currentLocation: req.body.currentLocation,
-//     });
-//     console.log(req.body);
-//   });
-//   console.log("OUT OF FOR1");
-//   res.status(200).send();
-// });
 
 // additional sensors
 router.post("/avSensorUpdate", async (req, res) => {
@@ -61,6 +47,7 @@ router.post("/avSensorUpdate", async (req, res) => {
       headlight: req.body.headlight,
       temperature: req.body.temperature,
       currentLocation: req.body.currentLocation,
+      vid: req.body.vid,
       // ..... (ADD ADDTIONAL SENSORS THAT ARE BEING RECEIVED)
     });
     console.log(req.body);

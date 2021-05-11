@@ -3,6 +3,7 @@ import CurrentState from "./currentState";
 import ServiceState from "./serviceStatus";
 import CurrentLocation from "./currentLocation";
 import RoadService from "./roadService";
+import VehicleId from "./vehicleId";
 import auth from "../services/authService";
 import { Link } from "react-router-dom";
 import { socket } from "../App";
@@ -33,13 +34,13 @@ class UserDashboard extends Component {
     serviceState: "",
     currentLocation: "",
     roadService: "",
+    vid: "",
   };
 
   componentDidMount() {
-    this.populateAVStatusListData();
+    //this.populateAVStatusListData();
     console.log("MADE IT TO SOCKET");
     socket.on("activeVehicleData", this.reRenderAV);
-    // socket.on("activeVehicleLocation", this.reRenderAV1);
     socket.on("activeSensorInformation", this.reRenderAV1);
     console.log("MADE IT PAS SOCKET");
   }
@@ -66,13 +67,15 @@ class UserDashboard extends Component {
       currentState: data.currentState,
       serviceState: data.serviceState,
       roadService: data.roadService,
+      vid: data.vid,
     });
     console.log("Populating count data");
   };
 
   reRenderAV1 = (data) => {
     console.log("SOCKET INCOMING DATA1: ", data);
-    this.setState({ currentLocation: data.currentLocation });
+    this.setState({ currentLocation: data.currentLocation, 
+            vid: data.vid, });
     console.log("Populating count data");
   };
 
@@ -90,6 +93,10 @@ class UserDashboard extends Component {
         >
           Additional Sensor Info
         </Link>
+        <VehicleId
+          style={{ marginTop: "30px" }}
+          data={this.state.vid}
+        ></VehicleId>
         <CurrentState
           style={{ marginTop: "30px" }}
           data={this.state.currentState}

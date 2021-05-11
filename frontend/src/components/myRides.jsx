@@ -15,11 +15,11 @@ class MyRides extends Component {
     state = {vId: "", Origin: "", vPspace: "", Destination: "", Date: ""};
 
     columns = [
-        { path: "vid", label: "Vehicle Id" },
+        { path: "vid", label: "Vehicle License Plate #" },
         { path: "origin", label: "Origin Location" },
         { path: "passengers", label: "Vehicle Passenger Space" },
         { path: "destination", label: "Destintaion Location" },
-        { path: "date", label: "Date" },
+        { path: "vdatetime", label: "Date/Time" },
       ];
 
       async componentDidMount() {
@@ -55,7 +55,7 @@ class MyRides extends Component {
                     }}
                 >Schedule a Ride</Link>
                 <p></p>
-                <Table data={rides} columns={this.columns} keyAtt="vId" ></Table>
+                <Table data={rides} columns={this.columns} keyAtt="vdatetime" ></Table>
                 
             </React.Fragment>
         );

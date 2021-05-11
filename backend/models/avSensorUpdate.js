@@ -27,9 +27,11 @@ AvSensorUpdate.watch().on("update", (data) => {
     userSockets.forEach((socket) => {
     console.log("Emitting1");
     socket.emit("activeSensorInformation", {
-      tailight: data.tailight,
-      headlight: data.headlight,
-      temperature: data.temperature,
+      tailight: data.updateDescription.updatedFields.tailight,
+      headlight: data.updateDescription.updatedFields.headlight,
+      temperature: data.updateDescription.updatedFields.temperature,
+      currentLocation: data.updateDescription.updateFields.currentLocation,
+      vid: data.updateDescription.updateFields.vid,
       // ..... (ADD ADDTIONAL SENSORS THAT ARE BEING RECEIVED)
     });
 });
