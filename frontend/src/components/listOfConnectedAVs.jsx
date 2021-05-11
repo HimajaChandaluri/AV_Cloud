@@ -8,6 +8,11 @@ class ListOfConnectedAVs extends Component {
 
   columns = [
     { path: "vid", label: "AV Number" },
+    { path: "email", label: "AV Owner" },
+    { path: "vmake", label: "AV Make" },
+    { path: "vmodel", label: "AV Model" },
+    { path: "vmileage", label: "AV Mileage" },
+    { path: "roadservice", label: "Road Service" },
     { path: "vcurrentstatus", label: "AV State" },
   ];
 
