@@ -25,7 +25,7 @@ class ServiceState extends Component {
         <p className="text-center" style={{ fontSize: "50px" }}>
           {this.props.data}
         </p>
-        {!this.props.data && this.props.data.length === 0 && (
+        {!this.props.data  && (
            <p className="text-center" style={{ fontSize: "50px" }}>
            Inactive
            </p>

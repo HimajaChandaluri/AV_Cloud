@@ -10,6 +10,7 @@ import { socket } from "../App";
 
 // import { getJwt } from "../services/authService";
 import { getAvStates } from "../services/avService";
+import { getVehicles } from "../services/userService";
 
 import _ from "lodash";
 
@@ -37,12 +38,18 @@ class UserDashboard extends Component {
     vid: "",
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     //this.populateAVStatusListData();
     console.log("MADE IT TO SOCKET");
     socket.on("activeVehicleData", this.reRenderAV);
     socket.on("activeSensorInformation", this.reRenderAV1);
     console.log("MADE IT PAS SOCKET");
+
+    const { data: getV } = await getVehicles();
+    this.setState({getV});
+    console.log("THIS: ", getV);
+
+    
   }
 
   async populateAVStatusListData() {
@@ -61,7 +68,7 @@ class UserDashboard extends Component {
     // this.setState({ avStatus });
   }
 
-  reRenderAV = (data) => {
+   reRenderAV = (data) => {
     console.log("SOCKET INCOMING DATA: ", data);
     this.setState({
       currentState: data.currentState,
@@ -69,6 +76,7 @@ class UserDashboard extends Component {
       roadService: data.roadService,
       vid: data.vid,
     });
+
     console.log("Populating count data");
   };
 
@@ -76,6 +84,16 @@ class UserDashboard extends Component {
     console.log("SOCKET INCOMING DATA1: ", data);
     this.setState({ currentLocation: data.currentLocation, 
             vid: data.vid, });
+    const index = _.findIndex(this.state.getV, (v) => {
+        
+        return (v.vid == data.vid)
+    })
+    this.setState({
+        currentState: this.state.getV[index].currentState,
+        serviceState: this.state.getV[index].serviceState,
+        roadService: this.state.getV[index].roadService,
+        vid: this.state.getV[index].vid,
+      });
     console.log("Populating count data");
   };
 
