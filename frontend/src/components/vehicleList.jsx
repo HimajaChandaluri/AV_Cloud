@@ -4,6 +4,7 @@ import Button from "./common/button";
 import auth from "../services/authService";
 import { getVehicles } from "../services/userService";
 import Table from "./common/table";
+import { getSubscriptionData } from "../services/userService";
 
 const user = auth.getCurrentUser();
 // let user1 = user.name.slice(0,1).toUpperCase() + user.name.slice(1,user.name.length);
@@ -40,6 +41,20 @@ class VehicleList extends Component {
         //     });
         // });
         this.setState({vehicles});
+
+        // const { data: planDetails } = await getSubscriptionData();
+        // console.log("PD", planDetails);
+        // console.log("PD", planDetails.current);
+        // console.log("PD1", vehicles.vservicestatus);
+
+        // if (planDetails.current)
+        // {
+        //     this.state.vehicles.vservicestatus = "active";
+        //     //this.setState(vehicles.vServiceStatus);
+        // }
+
+
+        
         console.log("again made it", this.state.vehicles);
     }
 
