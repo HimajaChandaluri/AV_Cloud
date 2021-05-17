@@ -5,6 +5,8 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import { Redirect } from "react-router";
 import { scheduleRide } from "../services/userService";
+import { getVehicles } from "../services/userService";
+
 
 class ScheduleRide extends Form {
   state = {
@@ -21,6 +23,12 @@ class ScheduleRide extends Form {
    // Date: Joi.date().greater('1-1-2020'),
     Destination: Joi.string().regex(RegExp(/^[a-zA-Z ]+$/)).required().label("Destination"),
   };
+
+  async componentDidMount() {
+    const { data: vehicles } = await getVehicles();
+    console.log("Made it: ", vehicles);
+    this.setState(vehicles);
+  }
 
   
   doSubmit = async () => {
@@ -66,13 +74,6 @@ class ScheduleRide extends Form {
     }
   };
 
-  //   async componentDidMount() {
-  //     const { data: vechiles } = await getVechiles(email);
-  //     console.log("Made it: ", vechiles);
-  //     this.setState({vechiles});
-  // {this.renderButton("Submit")}
-  //   }
-
   render() {
     // const user = auth.getCurrentUser();
     const { vehicles } = this.state;
@@ -85,6 +86,12 @@ class ScheduleRide extends Form {
         </div>
         <div>
           <form onSubmit={this.handleSubmit}>
+            {/* <select>
+                {this.state.data.map(obj => (
+                    <option key = {obj} value = {obj}></option>
+                ))}
+            </select> */}
+            {this.state.data.vId}
             {this.renderInput("vId", "VID")}
             {this.renderInput("Origin", "Origin")}
             {this.renderInput("Passengers", "# of passengers")}

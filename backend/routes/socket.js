@@ -61,6 +61,7 @@ router.post("/avSensorUpdate", async (req, res) => {
       temperature: req.body.temperature,
       currentLocation: req.body.currentLocation,
       vid: req.body.vid,
+      gps: req.body.gps,
       // ..... (ADD ADDTIONAL SENSORS THAT ARE BEING RECEIVED)
     });
     console.log(req.body);

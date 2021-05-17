@@ -39,13 +39,14 @@ class SensorInfo extends Component {
     headlight: "",
     temperature: "",
     vid: "",
+    gps: "",
   };
 
   columns = [
     { path: "headlight", label: "Vehicle Headlights" },
     { path: "tailight", label: "Vehicle Taillights" },
     { path: "temperature", label: "Vehicle Temperature" },
-    // { path: "vB", label: "Vehicle Right Tire" },
+    { path: "gps", label: "GPS data" },
     // { path: "vD", label: "Vehicle Left Tire" },
   ];
 
@@ -62,6 +63,7 @@ class SensorInfo extends Component {
       headlight: data.headlight,
       temperature: data.temperature,
       vid: data.vid,
+      gps: data.gps,
     });
     console.log("SET STATE", this.state.tailight);
   };
@@ -143,7 +145,25 @@ class SensorInfo extends Component {
               marginLeft: "200px",
               textAlign: "left",
             }}>Temperature Status: {this.state.temperature}</h2>
+        <div
+            className="dropdown-divider"
+            style={{
+              marginTop: "30px",
+              marginBottom: "30px",
+              borderBlockColor: "#BEE5F0",
+            }}
+          ></div>
+          <h2  
+            style={{
+              marginBottom: "50px",
+              marginTop: "50px",
+              marginLeft: "200px",
+              textAlign: "left",
+            }}>GPS: {this.state.gps}</h2>
+          
         </div>
+        
+        
         {/* <Table data={this.state.data} columns={this.columns} keyAtt="headlight" ></Table> */}
       </React.Fragment>
     );
